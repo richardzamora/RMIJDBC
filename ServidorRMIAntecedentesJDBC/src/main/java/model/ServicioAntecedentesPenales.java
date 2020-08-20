@@ -12,11 +12,7 @@ import java.util.Date;
 import estuctural.Ciudadano;
 import estuctural.Delito;
 import estuctural.TipoDocumento;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import persistencia.Conexion;
 
 /**
  *
@@ -24,98 +20,81 @@ import persistencia.Conexion;
  */
 public class ServicioAntecedentesPenales extends UnicastRemoteObject implements IServiciosAntecedentesPenales{
 
+    ServicioCiudadano servicioCiudadano;
+    ServicioAntecedente servicioAntecedente;
+    ServicioDelito servicioDelito;
+    ServicioTipoDocumento servicioTipoDocumento;
     
     public ServicioAntecedentesPenales() {
+        servicioAntecedente = new ServicioAntecedente();
+        servicioCiudadano = new ServicioCiudadano();
+        servicioDelito = new ServicioDelito();
+        servicioTipoDocumento = new ServicioTipoDocumento();
     }
 
     @Override
     public boolean eliminarCiudadano(String cedula) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return servicioCiudadano.eliminarCiudadano(cedula);
     }
 
     @Override
     public boolean agregarCiudadano(String cedula, int tipoDocumento, String nombre, String apellido, Date fechaNacimiento, boolean genero) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioCiudadano.agregarCiudadano(cedula, tipoDocumento, nombre, apellido, fechaNacimiento, genero);
     }
 
     @Override
     public Ciudadano darCiudadanoPorCedula(String cedula) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioCiudadano.darCiudadanoPorCedula(cedula);
     }
 
     @Override
     public ArrayList<Ciudadano> darCiudadanos() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioCiudadano.darCiudadanos();
     }
 
     @Override
     public boolean actualizarCiudadano(String cedula, int tipoDocumento, String nombre, String apellido, Date fechaNacimiento, boolean genero) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioCiudadano.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, fechaNacimiento, genero);
     }
 
     @Override
     public Delito darDelitoPorCodigo(int codigo) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioDelito.darDelitoPorCodigo(codigo);
     }
 
     @Override
     public ArrayList<Delito> darDelitos() throws RemoteException {
-        Conexion conn = null;
-        ResultSet rs = null;
-        Delito delito = new Delito();
-        ArrayList<Delito> delitos = new ArrayList<Delito>();
-        
-        try {
-            conn = Conexion.getInstance();
-            rs = conn.executeQuery(delito.leerTodos());
-            while(rs.next()){
-                int codigo = rs.getInt("codigo");
-                String nombre = rs.getString("nombre");
-                int penaMinima = rs.getInt("pena_minima");
-                int penaMaxima = rs.getInt("pena_maxima");
-                
-                delito = new Delito(codigo, nombre, penaMinima, penaMaxima);
-                
-                delitos.add(delito);
-            }
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
-        finally{
-            Conexion.close(rs);
-        }
-        return delitos;
+        return servicioDelito.darDelitos();
     }
 
     @Override
-    public Antecedente darAntecedentes() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Antecedente> darAntecedentes() throws RemoteException {
+        return servicioAntecedente.darAntecedentes();
     }
 
     @Override
     public boolean agregarAntecedente(String ciudadanoDi, int delitoCodigo, String ciudad, Date fechaDelito, int sentencia, String estado) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioAntecedente.agregarAntecedente(ciudadanoDi, delitoCodigo, ciudad, fechaDelito, sentencia, estado);
     }
 
     @Override
     public boolean actualizarAntecedente(String ciudadanoDi, int delitoCodigo, String ciudad, Date fechaDelito, int sentencia, String estado) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioAntecedente.actualizarAntecedente(ciudadanoDi, delitoCodigo, ciudad, fechaDelito, sentencia, estado);
     }
 
     @Override
     public boolean eliminarAntecedente(String ciudadanoDi, int delitoCodigo) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioAntecedente.eliminarAntecedente(ciudadanoDi, delitoCodigo);
     }
 
     @Override
     public TipoDocumento darTipoDocumentoPorCodigo(int codigo) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioTipoDocumento.darTipoDocumentoPorCodigo(codigo);
     }
 
     @Override
     public ArrayList<TipoDocumento> darTipoDocumentos() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return servicioTipoDocumento.darTipoDocumentos();
     }
 
 }
