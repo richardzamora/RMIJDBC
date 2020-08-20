@@ -10,7 +10,6 @@ package persistencia;
  * @author Richard
  */
 import java.sql.Statement;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,8 +28,7 @@ public class Conexion {
 		Properties conProperties = new Properties();
 		
 		try {
-
-			String url = "jdbc:postgresql://localhost:5432/antecedentes";
+			String url = "jdbc:postgresql://127.0.0.1:5432/antecedentesPenales";
 			String user = "postgres";
 			String password = "postgres";
 
@@ -77,4 +75,28 @@ public class Conexion {
 		}
 		return false;
 	}
+        
+        public static void close(ResultSet rs){
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public static void close(PreparedStatement stmt){
+        try {
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public static void close(Connection conn){
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+           ex.printStackTrace(System.out);
+        }
+    }
 }

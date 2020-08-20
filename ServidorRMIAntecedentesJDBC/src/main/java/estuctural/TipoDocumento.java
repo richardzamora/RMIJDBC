@@ -5,11 +5,13 @@
  */
 package estuctural;
 
+import java.io.Serializable;
+
 /**
  *
  * @author richa
  */
-public class TipoDocumento {
+public class TipoDocumento implements Serializable, CRUD{
     private int codigo;
     private String siglas;
     private String descripcion;
@@ -46,4 +48,37 @@ public class TipoDocumento {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String crear() {
+        return "INSERT INTO public.tipo_documentos(\n" +
+"	codigo, siglas, descripcion)\n" +
+"	VALUES ("+ codigo +", '"+ siglas +"', '"+ descripcion +"');";
+    }
+
+    @Override
+    public String leer() {
+        return "SELECT codigo, siglas, descripcion\n" +
+"	FROM public.tipo_documentos WHERE codigo="+ codigo +";";
+    }
+
+    @Override
+    public String leerTodos() {
+        return "SELECT codigo, siglas, descripcion\n" +
+"	FROM public.tipo_documentos;";
+    }
+
+    @Override
+    public String actualizar() {
+        return "UPDATE public.tipo_documentos\n" +
+"	SET codigo="+ codigo +", siglas='"+ siglas +"', descripcion='"+ descripcion +"'\n" +
+"	WHERE codigo="+ codigo +";";
+    }
+
+    @Override
+    public String eliminar() {
+        return "DELETE FROM public.tipo_documentos\n" +
+"	WHERE codigo="+ codigo +";";
+    }
+    
 }

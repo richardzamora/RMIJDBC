@@ -12,70 +12,97 @@ import java.util.Date;
  *
  * @author Richard
  */
-public class Antecedente implements Serializable{
+public class Antecedente implements Serializable, CRUD{
     
-    
-    private String tipoDeCrimen;
-    private String detalles;
-    private Date fechaDelito;
+    private String ciudadanoDi;
+    private int delitoCodigo;
     private String ciudad;
+    private Date fechaDelito;
     private int sentencia;
     private String estado;
 
     public Antecedente() {
     }
 
-    public Antecedente(String tipoDeCrimen, String detalles, Date fechaDelito, String ciudad, int sentencia, String estado) {
-        this.tipoDeCrimen = tipoDeCrimen;
-        this.detalles = detalles;
-        this.fechaDelito = fechaDelito;
+    public Antecedente(String ciudadanoDi, int delitoCodigo, String ciudad, Date fechaDelito, int sentencia, String estado) {
+        this.ciudadanoDi = ciudadanoDi;
+        this.delitoCodigo = delitoCodigo;
         this.ciudad = ciudad;
+        this.fechaDelito = fechaDelito;
         this.sentencia = sentencia;
         this.estado = estado;
     }
 
-    public Antecedente(String tipoDeCrimen, String detalles, Date fechaDelito, String ciudad, int sentencia) {
-        this.tipoDeCrimen = tipoDeCrimen;
-        this.detalles = detalles;
-        this.fechaDelito = fechaDelito;
-        this.ciudad = ciudad;
-        this.sentencia = sentencia;
-        this.estado = "Activo";
+    public String getCiudadanoDi() {
+        return ciudadanoDi;
     }
 
-    
-    
-    public String getTipoDeCrimen() {
-        return tipoDeCrimen;
+    public void setCiudadanoDi(String ciudadanoDi) {
+        this.ciudadanoDi = ciudadanoDi;
     }
 
-    public String getDetalles() {
-        return detalles;
+    public int getDelitoCodigo() {
+        return delitoCodigo;
     }
 
-    public Date getFechaDelito() {
-        return fechaDelito;
+    public void setDelitoCodigo(int delitoCodigo) {
+        this.delitoCodigo = delitoCodigo;
     }
 
     public String getCiudad() {
         return ciudad;
     }
 
-    public void setTipoDeCrimen(String tipoDeCrimen) {
-        this.tipoDeCrimen = tipoDeCrimen;
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
-    public void setDetalles(String detalles) {
-        this.detalles = detalles;
+    public Date getFechaDelito() {
+        return fechaDelito;
     }
 
     public void setFechaDelito(Date fechaDelito) {
         this.fechaDelito = fechaDelito;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public int getSentencia() {
+        return sentencia;
     }
-    
-    
+
+    public void setSentencia(int sentencia) {
+        this.sentencia = sentencia;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String crear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String leer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String leerTodos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String actualizar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String eliminar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

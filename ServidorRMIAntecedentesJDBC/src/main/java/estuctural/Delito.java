@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author richa
  */
-public class Delito implements Serializable{
+public class Delito implements Serializable, CRUD{
     private int codigo;
     private String nombre;
     private int penaMinima;
@@ -62,6 +62,43 @@ public class Delito implements Serializable{
 
     public void setPenaMaxima(int penaMaxima) {
         this.penaMaxima = penaMaxima;
+    }
+
+    @Override
+    public String toString() {
+        return "Delito{" + "codigo=" + codigo + ", nombre=" + nombre + ", penaMinima=" + penaMinima + ", penaMaxima=" + penaMaxima + '}';
+    }
+
+    @Override
+    public String crear() {
+        return "INSERT INTO public.delitos(\n" +
+"	codigo, nombre, pena_minima, pena_maxima)\n" +
+"	VALUES ("+ codigo +", '"+ nombre +"', "+ penaMinima +", "+ penaMaxima +");";
+    }
+
+    @Override
+    public String leer() {
+        return "SELECT codigo, nombre, pena_minima, pena_maxima\n" +
+"	FROM public.delitos WHERE codigo="+ codigo +";";
+    }
+
+    @Override
+    public String leerTodos() {
+        return "SELECT codigo, nombre, pena_minima, pena_maxima\n" +
+"	FROM public.delitos;";
+    }
+
+    @Override
+    public String actualizar() {
+        return "UPDATE public.delitos\n" +
+"	SET codigo="+ codigo +", nombre='"+ nombre +"', pena_minima="+ penaMinima +", pena_maxima="+ penaMaxima +"\n" +
+"	WHERE codigo="+ codigo +";";
+    }
+
+    @Override
+    public String eliminar() {
+        return "DELETE FROM public.delitos\n" +
+"	WHERE codigo="+ codigo +";";
     }
     
     
