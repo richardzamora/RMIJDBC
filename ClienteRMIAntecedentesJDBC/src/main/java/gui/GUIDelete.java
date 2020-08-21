@@ -11,10 +11,8 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-import logica.estuctural.Ciudadano;
-import logica.estuctural.Ciudadano.TipoDocumento;
+import estuctural.Ciudadano;
 import logica.Observer;
-import model.IServicioAntecedentes;
 import model.IServiciosAntecedentesPenales;
 
 /**

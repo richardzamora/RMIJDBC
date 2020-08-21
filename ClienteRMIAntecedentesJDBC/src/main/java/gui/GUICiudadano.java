@@ -11,10 +11,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import logica.estuctural.Ciudadano;
-import logica.estuctural.Ciudadano.TipoDocumento;
-import logica.Observer;
-import model.IServicioAntecedentes;
+import estuctural.TipoDocumento;
+import estuctural.Ciudadano;
 import model.IServiciosAntecedentesPenales;
 
 /**
@@ -24,14 +22,12 @@ import model.IServiciosAntecedentesPenales;
 public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
 
     private IServiciosAntecedentesPenales controller;
-    private Observer observer;
     /**
      * Creates new form GUICrud
      */
     public GUICiudadano(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller =controller;
-        observer = Observer.getInstance();
         cambio();
     }
 
@@ -69,14 +65,14 @@ public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Direccion", "Fecha", "T.Doc", "Cedula", "Antecedentes"
+                "Nombre", "Apellido", "Fecha", "T.Doc", "Cedula"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -156,64 +152,24 @@ public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        try {
             // TODO add your handling code here
-//            controller.datosPrueba();
-            observer.cambioEstado();
+            cambio();
 //        } catch (RemoteException ex) {
 //            System.out.println(ex.getMessage());
 //        }
     }//GEN-LAST:event_jButton1ActionPerformed
-
     
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
-        TipoDocumento tipoDocumento = (TipoDocumento)jTable1.getValueAt(row, 4);
         String cedula = (String)jTable1.getValueAt(row, 5);
         try {
-            Ciudadano persona = controller.darCiudadanoPorCedula(cedula, tipoDocumento);
-            observer.setUltimoCiudadano(persona);
-            observer.cambioEstado();
+            Ciudadano persona = controller.darCiudadanoPorCedula(cedula);
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUICiudadano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUICiudadano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUICiudadano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUICiudadano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GUICiudadano().setVisible(true);
-//            }
-//        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -230,10 +186,12 @@ public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
             model.getDataVector().removeAllElements();
             if(!controller.darCiudadanos().isEmpty())
             {
+                System.out.println("dar ciudadano no anda vacío");
                 for (Ciudadano people : controller.darCiudadanos()) {
-                    model.addRow(new Object[]{people.getNombre(),people.getApellido(), people.getDireccion(), people.getFechaNacimiento(),people.getTipoDocumento(), people.getCedula(), people.tieneAntecedente()});
-                }
+                    model.addRow(new Object[]{people.getNombre(),people.getApellido(), people.getFechaNacimiento(),people.getTipoDocumento(), people.getCedula()});
+                }    
             }
+            
         } catch (RemoteException ex) {
             Logger.getLogger(GUICiudadano.class.getName()).log(Level.SEVERE, null, ex);
         }

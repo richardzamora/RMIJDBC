@@ -20,9 +20,9 @@ public class AplicacionClienteRMIHola {
      */
     public static void main(String[] args) {
         try{
-            IServiciosAntecedentesPenales model = (IServiciosAntecedentesPenales)Naming.lookup("//192.168.16.9/ServidorAntecedentes");
+            IServiciosAntecedentesPenales model = (IServiciosAntecedentesPenales)Naming.lookup("//192.168.16.13/ServidorAntecedentes");
             GUIMenu gui = new GUIMenu(model);
-            gui.setVisible(true);
+            gui.show();
         }catch(Exception e){
             System.out.println("Error! : " + e);
         }
