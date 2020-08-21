@@ -91,7 +91,7 @@ public class ServicioAntecedente {
     {
         Conexion conn = Conexion.getInstance();
         Antecedente antecedente = new Antecedente(ciudadanoDi, delitoCodigo, ciudad, fechaDelito, sentencia, estado);
-        return conn.executeUpdate(antecedente.eliminar());
+        return conn.executeUpdate(antecedente.crear());
     }
     
     public boolean actualizarAntecedente(int id, String ciudadanoDi, int delitoCodigo, String ciudad, Date fechaDelito, int sentencia, String estado) 
@@ -122,5 +122,47 @@ public class ServicioAntecedente {
 //            }
 //        }
         return sentencia;
+    }
+    
+    public ArrayList<Antecedente> darAntecedentesPorCiudadano(String ciudadanoDi)
+    {
+        ArrayList<Antecedente> antecedentes = new ArrayList<>();
+        
+        for(Antecedente antecedente : darAntecedentes())
+        {
+            if(antecedente.getCiudadanoDi().equals(ciudadanoDi))
+            {
+                antecedentes.add(antecedente);
+            }
+        }
+        return antecedentes;
+    }
+    
+    public ArrayList<Antecedente> darAntecedentesPorDelito(int delitoCodigo)
+    {
+        ArrayList<Antecedente> antecedentes = new ArrayList<>();
+        
+        for(Antecedente antecedente : darAntecedentes())
+        {
+            if(antecedente.getDelitoCodigo()==delitoCodigo)
+            {
+                antecedentes.add(antecedente);
+            }
+        }
+        return antecedentes;
+    }
+    
+    public ArrayList<Antecedente> darAntecedentesPorCiudadanoYDelito(String ciudadanoDi, int delitoCodigo)
+    {
+        ArrayList<Antecedente> antecedentes = new ArrayList<>();
+        
+        for(Antecedente antecedente : darAntecedentes())
+        {
+            if(antecedente.getCiudadanoDi().equals(ciudadanoDi) && antecedente.getDelitoCodigo()==delitoCodigo)
+            {
+                antecedentes.add(antecedente);
+            }
+        }
+        return antecedentes;
     }
 }

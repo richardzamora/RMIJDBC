@@ -110,7 +110,7 @@ public class Antecedente implements Serializable, CRUD{
     public String crear() {
         return "INSERT INTO public.antecedentes(\n" +
 "	ciudadano_di, delito_codigo, ciudad, fecha_delito, sentencia, estado)\n" +
-"	VALUES ('"+ ciudadanoDi +"', "+ delitoCodigo +", '"+ ciudad +"', "+ fechaDelito +", "+ sentencia +",'"+ estado +"');";
+"	VALUES ('"+ ciudadanoDi +"', "+ delitoCodigo +", '"+ ciudad +"', '"+ fechaDelito +"', "+ sentencia +",'"+ estado +"');";
     }
 
     @Override
