@@ -127,11 +127,14 @@ public class Antecedente implements Serializable, CRUD{
 
     @Override
     public String actualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "UPDATE public.antecedentes\n" +
+"	SET ciudadano_di='"+ ciudadanoDi +"', delito_codigo="+ delitoCodigo +", ciudad='"+ ciudad +"', fecha_delito="+ fechaDelito +", sentencia="+ sentencia +", estado='"+ estado +"'\n" +
+"	WHERE id = "+ id +";";
     }
 
     @Override
     public String eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "DELETE FROM public.antecedentes\n" +
+"	WHERE id = "+ id +";";
     }
 }
