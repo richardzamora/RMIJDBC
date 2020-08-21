@@ -102,7 +102,7 @@ public class Antecedente implements Serializable, CRUD{
 
     @Override
     public String toString() {
-        return "Antecedente{" + "id=" + id + ", ciudadanoDi=" + ciudadanoDi + ", delitoCodigo=" + delitoCodigo + ", ciudad=" + ciudad + ", fechaDelito=" + fechaDelito + ", sentencia=" + sentencia + ", estado=" + estado + '}';
+        return "Antecedente{" + "id=" + id + ", ciudadanoDi=" + ciudadanoDi + ", delitoCodigo=" + delitoCodigo + ", ciudad=" + ciudad + ", fechaDelito= '" + fechaDelito + "', sentencia=" + sentencia + ", estado=" + estado + '}';
     }
 
     
@@ -128,7 +128,7 @@ public class Antecedente implements Serializable, CRUD{
     @Override
     public String actualizar() {
         return "UPDATE public.antecedentes\n" +
-"	SET ciudadano_di='"+ ciudadanoDi +"', delito_codigo="+ delitoCodigo +", ciudad='"+ ciudad +"', fecha_delito="+ fechaDelito +", sentencia="+ sentencia +", estado='"+ estado +"'\n" +
+"	SET ciudadano_di='"+ ciudadanoDi +"', delito_codigo="+ delitoCodigo +", ciudad='"+ ciudad +"', fecha_delito= '"+ fechaDelito +"', sentencia="+ sentencia +", estado='"+ estado +"'\n" +
 "	WHERE id = "+ id +";";
     }
 

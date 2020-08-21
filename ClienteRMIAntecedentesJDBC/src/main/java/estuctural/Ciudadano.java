@@ -109,7 +109,7 @@ public class Ciudadano implements Serializable, CRUD{
     public String crear() {
         return "INSERT INTO public.ciudadanos(\n" +
 "	di, tipo_documento, nombre, apellido, fecha_nacimiento, genero)\n" +
-"	VALUES ('"+ di +"', "+ tipoDocumento +", '"+ nombre +"', '"+ apellido +"', "+ fechaNacimiento +", "+ genero +");";
+"	VALUES ('"+ di +"', "+ tipoDocumento +", '"+ nombre +"', '"+ apellido +"', '"+ fechaNacimiento +"', "+ genero +");";
     }
 
     @Override
@@ -127,7 +127,7 @@ public class Ciudadano implements Serializable, CRUD{
     @Override
     public String actualizar() {
         return "UPDATE public.ciudadanos\n" +
-"	SET di='"+ di +"', tipo_documento="+ tipoDocumento +", nombre='"+ nombre +"', apellido='"+ apellido +"', fecha_nacimiento="+ fechaNacimiento +", genero="+ genero +"\n" +
+"	SET di='"+ di +"', tipo_documento="+ tipoDocumento +", nombre='"+ nombre +"', apellido='"+ apellido +"', fecha_nacimiento='"+ fechaNacimiento +"', genero="+ genero +"\n" +
 "	WHERE di='"+ di +"';";
     }
 
