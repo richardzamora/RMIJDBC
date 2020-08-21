@@ -330,7 +330,6 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable, 
         jTextField6.setText("");
         jTextField8.setText("");
         jTextFieldDelito.setText("");
-        jDateChooser1.setDateFormatString("");
     }
 
     @Override

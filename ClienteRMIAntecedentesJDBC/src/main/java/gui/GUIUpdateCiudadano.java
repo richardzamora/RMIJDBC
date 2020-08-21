@@ -330,6 +330,5 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
         jTextField1.setText("");
         jTextField3.setText("");
         jTextField5.setText("");
-        jDateChooser1.setDateFormatString("");
     }
 }

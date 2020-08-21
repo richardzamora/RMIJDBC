@@ -124,6 +124,7 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
         jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
         jTextField3.setEnabled(false);
 
+        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
         jDateChooser1.setEnabled(false);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de ciudadania", "Tarjeta de identidad", "Cedula de extranjeria" }));
@@ -328,6 +329,5 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
         jTextField1.setText("");
         jTextField3.setText("");
         jTextField5.setText("");
-        jDateChooser1.setDateFormatString("");
     }
 }

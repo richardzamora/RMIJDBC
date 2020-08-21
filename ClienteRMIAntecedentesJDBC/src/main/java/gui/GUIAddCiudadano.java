@@ -273,6 +273,5 @@ public class GUIAddCiudadano extends javax.swing.JFrame{
         jTextFieldNombre.setText("");
         jTextFieldApellido.setText("");
         jTextFieldDi.setText("");
-        jDateChooser1.setDateFormatString("");
     }
 }

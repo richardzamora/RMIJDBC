@@ -218,6 +218,7 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
             if(controller.eliminarAntecedente(id))
             {
                 JOptionPane.showMessageDialog(this,"Antecedente eliminado correctamente");
+                limpiar();
                 jButtonEliminar.setEnabled(false);
             }else{
                 JOptionPane.showMessageDialog(this, "No se pudo eliminar el antecedente");
@@ -293,5 +294,11 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
     @Override
     public void cambiarTxtCiudadano(String ciudadanoDI) {
         jTextFieldDI.setText(ciudadanoDI);
+    }
+    
+    public void limpiar(){
+        jTextFieldDI.setText("");
+        jTextFieldDelito.setText("");
+        jTextFieldIdAntecedente.setText("");
     }
 }
