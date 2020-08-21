@@ -19,14 +19,14 @@ import model.IServiciosAntecedentesPenales;
  *
  * @author Estudiantes
  */
-public class GUIDelete extends javax.swing.JFrame implements Cambiable{
+public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
 
     private IServiciosAntecedentesPenales controller;
     private Observer observer;
     /**
      * Creates new form GUIDelete
      */
-    public GUIDelete(IServiciosAntecedentesPenales controller) {
+    public GUIDeleteCiudadano(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller = controller;
         this.observer = Observer.getInstance();
@@ -185,13 +185,13 @@ public class GUIDelete extends javax.swing.JFrame implements Cambiable{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIDelete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIDeleteCiudadano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIDelete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIDeleteCiudadano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIDelete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIDeleteCiudadano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIDelete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIDeleteCiudadano.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -199,6 +199,14 @@ public class GUIDelete extends javax.swing.JFrame implements Cambiable{
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
 //                new GUIDelete().setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new GUIDeleteCiudadano().setVisible(true);
 //            }
 //        });
     }

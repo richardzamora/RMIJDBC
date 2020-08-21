@@ -15,7 +15,7 @@ import model.IServiciosAntecedentesPenales;
  *
  * @author Estudiantes
  */
-public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
+public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
 
     private IServiciosAntecedentesPenales controller;
 
@@ -23,7 +23,7 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
     /**
      * Creates new form GUIUpdate
      */
-    public GUIUpdate(IServiciosAntecedentesPenales controller) {
+    public GUIUpdateCiudadano(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller = controller;
     }
@@ -96,7 +96,7 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
 
         jLabel2.setText("Apellido");
 
-        jLabel3.setText("Dirección");
+        jLabel3.setText("Genero");
 
         jTextField4.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
 
@@ -237,7 +237,12 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
         cedula = jTextField5.getText().trim();
         try {
             if(!cedula.isEmpty()){
-                controller.darCiudadanoPorCedula(cedula);
+                Ciudadano ciudadano = controller.darCiudadanoPorCedula(cedula);
+                
+                jTextField1.setText(ciudadano.getNombre());
+                jTextField3.setText(ciudadano.getApellido());
+                jTextField4.setText("true");
+                jDateChooser1.setDate(ciudadano.getFechaNacimiento());
             }else{
                 JOptionPane.showMessageDialog(this, "No ha digitado nigun número de identificación, \n por favor intentelo de nuevo");
             }
@@ -253,15 +258,14 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
         try {
             String nombre = jTextField1.getText().trim();
             String apellido = jTextField3.getText().trim();
-            String direccion = jTextField4.getText().trim();
-            Date fecha = jDateChooser1.getDate();
+            Date fecha = (Date)jDateChooser1.getDate();
             String cedula = jTextField5.getText().trim();
             int tipoDocumento = Integer.parseInt((String)jComboBox1.getSelectedItem());
-                if(nombre.isEmpty() || apellido.isEmpty() || direccion.isEmpty() || cedula.isEmpty()) {
+                if(nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intente de nuevo");
                 }
                 else{
-                  controller.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, fecha, false);
+                  controller.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, (Date)fecha, false);
                     JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
                 }
         } catch (Exception e) {
