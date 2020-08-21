@@ -208,15 +208,12 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jTextField1" alignment="1" max="32767" attributes="0"/>
                           <Component id="jTextField3" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jDateChooser1" min="-2" pref="131" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jRadioButtonH" min="-2" pref="78" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="32767" attributes="0"/>
                               <Component id="jRadioButtonM" min="-2" pref="91" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jDateChooser1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -300,11 +297,17 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioButtonH">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Hombre"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioButtonM">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Mujer"/>
               </Properties>
             </Component>

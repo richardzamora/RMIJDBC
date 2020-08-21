@@ -19,7 +19,7 @@ import model.IServiciosAntecedentesPenales;
  *
  * @author Estudiantes
  */
-public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
+public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable, IBuscarCiudadano,IBuscarDelito{
 
     private IServiciosAntecedentesPenales controller;
      
@@ -44,8 +44,7 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTextFieldDi = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -54,11 +53,12 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
         jTextField8 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jTextField9 = new javax.swing.JTextField();
+        jTextFieldDelito = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setTitle("Añadir Antecedente");
         setResizable(false);
@@ -75,10 +75,7 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
         jLabel6.setText("Numero de identificación ");
         jLabel6.setToolTipText("");
 
-        jLabel5.setText("Tipo de documento");
-        jLabel5.setToolTipText("");
-
-        jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
+        jTextFieldDi.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
 
         jLabel7.setText("Codigo del delito");
         jLabel7.setToolTipText("");
@@ -118,19 +115,31 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
             }
         });
 
-        jTextField9.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
+        jTextFieldDelito.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
 
         jDateChooser1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(229, 229, 229)));
         jDateChooser1.setForeground(new java.awt.Color(229, 229, 229));
         jDateChooser1.setMinimumSize(new java.awt.Dimension(52, 24));
         jDateChooser1.setPreferredSize(new java.awt.Dimension(113, 24));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-
         jLabel11.setText("Estado");
         jLabel11.setToolTipText("");
 
         jTextField10.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
+
+        jButton2.setText("...");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("...");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,11 +150,10 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(199, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(156, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
@@ -154,40 +162,42 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
                             .addComponent(jLabel11))
                         .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                             .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField8)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField10))
+                            .addComponent(jTextField10)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextFieldDelito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldDi, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(76, 76, 76))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(228, 228, 228))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(219, 219, 219))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(228, 228, 228))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jTextFieldDelito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +214,7 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addContainerGap())
         );
@@ -217,7 +227,7 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -226,11 +236,11 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        int delitoCodigo = Integer.parseInt(jTextField9.getText().trim());
+        int delitoCodigo = Integer.parseInt(jTextFieldDelito.getText().trim());
         Date fecha = jDateChooser1.getDate();
         String ciudad = jTextField6.getText().trim();
         int sentencia = Integer.parseInt(jTextField8.getText().trim());
-        String cedula = jTextField5.getText().trim();
+        String cedula = jTextFieldDi.getText().trim();
         String estado = jTextField10.getText().trim();
 
         try {
@@ -239,12 +249,7 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
             }else{
                 controller.agregarAntecedente(cedula, delitoCodigo, ciudad, fecha, sentencia, estado);
                 JOptionPane.showMessageDialog(this, "Antecedente añadido correctamente");
-                jTextField10.setText("");
-                jTextField5.setText("");
-                jTextField6.setText("");
-                jTextField8.setText("");
-                jTextField9.setText("");
-                jDateChooser1.setDateFormatString("");
+                limpiar();
             }
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
@@ -256,12 +261,20 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
 
         try {
             String cedula;
-            cedula = jTextField5.getText().trim(); 
+            cedula = jTextFieldDi.getText().trim(); 
             if(!cedula.isEmpty()){
                  Ciudadano ciudadano = controller.darCiudadanoPorCedula(cedula);
-                 jButton5.setEnabled(true);
-                 JOptionPane.showMessageDialog(this, "El ciudadano seleccionado es : " + ciudadano.getNombre().trim() + " " + ciudadano.getApellido().trim());
-            }else{
+                 if(ciudadano!=null){
+                    jButton5.setEnabled(true);
+                    JOptionPane.showMessageDialog(this, "El ciudadano seleccionado es : " + ciudadano.getNombre().trim() + " " + ciudadano.getApellido().trim());
+
+                 }
+                 else
+                 {
+                     JOptionPane.showMessageDialog(this, "El ciudadano con la documento de identificación " + cedula + " no existe");
+                     jButton5.setEnabled(false);
+                 }
+                 }else{
                 JOptionPane.showMessageDialog(this, "No ha sido digitado ningun número de identificación, \n por favor intentelo de nuevo");
             }
         } catch (RemoteException ex) {
@@ -269,31 +282,61 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        GUICiudadano gui = new GUICiudadano(controller, this);
+        gui.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        GUIMostrarDelito gui = new GUIMostrarDelito(controller, this);
+        gui.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextFieldDelito;
+    private javax.swing.JTextField jTextFieldDi;
     // End of variables declaration//GEN-END:variables
     //TODO implementar
     @Override
     public void cambio() {
+    }
+    
+    public void limpiar(){
+        jTextField10.setText("");
+        jTextFieldDi.setText("");
+        jTextField6.setText("");
+        jTextField8.setText("");
+        jTextFieldDelito.setText("");
+        jDateChooser1.setDateFormatString("");
+    }
 
+    @Override
+    public void cambiarTxtCiudadano(String ciudadanoDI) {
+        jTextFieldDi.setText(ciudadanoDI);
+    }
+
+    @Override
+    public void cambiarTxtDelito(int codigoDelito) {
+        jTextFieldDelito.setText("" + codigoDelito);
     }
 }

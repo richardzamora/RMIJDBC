@@ -121,8 +121,10 @@ public class GUIAddCiudadano extends javax.swing.JFrame{
 
         jTextFieldApellido.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
 
+        jRadioButtonH.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButtonH.setText("Hombre");
 
+        jRadioButtonM.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButtonM.setText("Mujer");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -211,9 +213,7 @@ public class GUIAddCiudadano extends javax.swing.JFrame{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 29, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -270,5 +270,6 @@ public class GUIAddCiudadano extends javax.swing.JFrame{
         jTextFieldNombre.setText("");
         jTextFieldApellido.setText("");
         jTextFieldDi.setText("");
+        jDateChooser1.setDateFormatString("");
     }
 }

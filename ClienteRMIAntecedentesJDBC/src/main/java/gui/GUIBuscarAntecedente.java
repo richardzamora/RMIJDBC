@@ -18,13 +18,13 @@ import model.IServiciosAntecedentesPenales;
  *
  * @author Estudiantes
  */
-public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBuscarCiudadano, IBuscarDelito{
+public class GUIBuscarAntecedente extends javax.swing.JFrame implements IBuscarCiudadano, IBuscarDelito{
 
     private IServiciosAntecedentesPenales controller;
     /**
      * Creates new form GUIActualizarAntecedente
      */
-    public GUIActualizarAntecedente(IServiciosAntecedentesPenales controller) {
+    public GUIBuscarAntecedente(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller = controller;
     }
@@ -56,10 +56,9 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButtonActualizar = new javax.swing.JButton();
         jTextFieldIdAntecedente = new javax.swing.JTextField();
 
-        setTitle("Actualizar antecedente");
+        setTitle("Buscar antecedente");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,6 +101,7 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
             }
         });
 
+        jTextFieldCiudad.setEditable(false);
         jTextFieldCiudad.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
 
         jDateChooser1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(229, 229, 229)));
@@ -109,8 +109,10 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
         jDateChooser1.setMinimumSize(new java.awt.Dimension(52, 24));
         jDateChooser1.setPreferredSize(new java.awt.Dimension(113, 24));
 
+        jTextFieldSentencia.setEditable(false);
         jTextFieldSentencia.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
 
+        jTextFieldEstado.setEditable(false);
         jTextFieldEstado.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
 
         jLabel8.setText("id");
@@ -128,22 +130,8 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
         jLabel12.setText("Estado");
         jLabel12.setToolTipText("");
 
-        jButtonActualizar.setBackground(new java.awt.Color(229, 229, 229));
-        jButtonActualizar.setFont(new java.awt.Font("Lucida Fax", 2, 24)); // NOI18N
-        jButtonActualizar.setForeground(new java.awt.Color(3, 59, 118));
-        jButtonActualizar.setText("Actualizar");
-        jButtonActualizar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButtonActualizar.setEnabled(false);
-        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonActualizarActionPerformed(evt);
-            }
-        });
-
-        jTextFieldIdAntecedente.setEditable(false);
         jTextFieldIdAntecedente.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldIdAntecedente.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(229, 229, 229)));
-        jTextFieldIdAntecedente.setEnabled(false);
         jTextFieldIdAntecedente.setSelectionColor(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -188,10 +176,8 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(186, 186, 186))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(187, 187, 187))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,9 +216,7 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButtonActualizar)
-                .addContainerGap())
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,7 +227,7 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -256,6 +240,7 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
             String ciudadanoDi = jTextFieldDI.getText();
             int codigoDelito = Integer.parseInt(jTextFieldDelito.getText());
             ArrayList<Antecedente> antecedentes = controller.darAntecedentesPorCiudadanoYDelito(ciudadanoDi, codigoDelito);
+            
             if(!antecedentes.isEmpty())
             {
                 String codigoId = ""+  antecedentes.get(0).getId();
@@ -264,7 +249,6 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
                 jTextFieldEstado.setText(antecedentes.get(0).getEstado().trim());
                 jTextFieldSentencia.setText(antecedentes.get(0).getSentencia()+"");
                 jDateChooser1.setDate(antecedentes.get(0).getFechaDelito());
-                jButtonActualizar.setEnabled(true);
             }
         } catch (RemoteException ex) {
             Logger.getLogger(GUIDeleteAntecedente.class.getName()).log(Level.SEVERE, null, ex);
@@ -283,38 +267,11 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
         gui.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-        // TODO add your handling code here:
-        try {
-                String ciudadano = jTextFieldDI.getText().trim();
-                int delito = Integer.parseInt(jTextFieldDelito.getText());
-                int id = Integer.parseInt(jTextFieldIdAntecedente.getText());
-                String ciudad = jTextFieldCiudad.getText().trim();
-                String estado = jTextFieldEstado.getText().trim();
-                int sentencia = Integer.parseInt(jTextFieldSentencia.getText());
-                
-                Date fechaDelito = jDateChooser1.getDate();
-            if(ciudad.isEmpty() || estado.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intente de nuevo");
-            }
-            else{
-                controller.actualizarAntecedente(id, ciudadano, delito, ciudad, fechaDelito, sentencia, estado);
-                JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
-                limpiar();
-                jButtonActualizar.setEnabled(false);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-
-    }//GEN-LAST:event_jButtonActualizarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonActualizar;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

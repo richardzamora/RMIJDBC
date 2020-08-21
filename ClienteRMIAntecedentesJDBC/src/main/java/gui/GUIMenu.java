@@ -261,6 +261,11 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenu2.add(jMenuItem11);
 
         jMenuItem13.setText("Buscar antecedente");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem13);
 
         jMenuItem10.setText("Mostrar antecedente");
@@ -404,6 +409,12 @@ public class GUIMenu extends javax.swing.JFrame {
         GUIActualizarAntecedente gui = new GUIActualizarAntecedente(controller);
         gui.show();
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        GUIBuscarAntecedente gui = new GUIBuscarAntecedente(controller);
+        gui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     /**
      * @param args the command line arguments

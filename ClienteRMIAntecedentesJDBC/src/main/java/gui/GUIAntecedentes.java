@@ -22,7 +22,7 @@ import model.IServiciosAntecedentesPenales;
  *
  * @author Estudiantes
  */
-public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IBuscarDelito{
+public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IBuscarDelito, IBuscarCiudadano{
 
     private IServiciosAntecedentesPenales controller;
     /**
@@ -52,6 +52,7 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IB
         jTextFieldDelito = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButtonFiltrar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setTitle("Ver Antecedentes");
         setResizable(false);
@@ -122,21 +123,29 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IB
             }
         });
 
+        jButton3.setText("...");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBoxDI)
-                            .addComponent(jTextFieldDI, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFieldDI, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBoxDelito)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -145,7 +154,7 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IB
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jButtonFiltrar)))
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -166,7 +175,8 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IB
                     .addComponent(jTextFieldDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldDelito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
-                    .addComponent(jButtonFiltrar))
+                    .addComponent(jButtonFiltrar)
+                    .addComponent(jButton3))
                 .addContainerGap(383, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -245,9 +255,16 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IB
         llenarGrilla(antecedentes);
     }//GEN-LAST:event_jButtonFiltrarActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        GUICiudadano gui = new GUICiudadano(controller, this);
+        gui.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JCheckBox jCheckBoxDI;
     private javax.swing.JCheckBox jCheckBoxDelito;
@@ -280,5 +297,10 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IB
                 model.addRow(new Object[]{antecedente.getId(), antecedente.getCiudadanoDi(), antecedente.getDelitoCodigo(), antecedente.getFechaDelito(), antecedente.getSentencia(), antecedente.getEstado()});    
             }
         }
+    }
+
+    @Override
+    public void cambiarTxtCiudadano(String ciudadanoDI) {
+        jTextFieldDI.setText(ciudadanoDI);
     }
 }

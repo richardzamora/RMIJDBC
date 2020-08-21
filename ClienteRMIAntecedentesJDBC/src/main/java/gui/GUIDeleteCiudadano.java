@@ -26,6 +26,8 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
     public GUIDeleteCiudadano(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller = controller;
+        buttonGroup1.add(jRadioButtonH);
+        buttonGroup1.add(jRadioButtonM);
     }
 
     /**
@@ -37,6 +39,7 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -44,7 +47,6 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
         jLabel6 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -52,8 +54,10 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jRadioButtonH = new javax.swing.JRadioButton();
+        jRadioButtonM = new javax.swing.JRadioButton();
 
         setTitle("Eliminar Ciudadano");
         setBackground(new java.awt.Color(255, 255, 255));
@@ -89,8 +93,6 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon("imagenes\\eliminar160.png"));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-
         jButton2.setBackground(new java.awt.Color(229, 229, 229));
         jButton2.setFont(new java.awt.Font("Lucida Fax", 2, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(3, 59, 118));
@@ -122,10 +124,15 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
         jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
         jTextField3.setEnabled(false);
 
-        jTextField4.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
-        jTextField4.setEnabled(false);
-
         jDateChooser1.setEnabled(false);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de ciudadania", "Tarjeta de identidad", "Cedula de extranjeria" }));
+
+        jRadioButtonH.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioButtonH.setText("Hombre");
+
+        jRadioButtonM.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioButtonM.setText("Mujer");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,17 +154,20 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jRadioButtonH, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRadioButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField3))
+                                    .addComponent(jTextField3)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
@@ -180,7 +190,7 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -202,9 +212,11 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
                             .addComponent(jLabel3)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jRadioButtonM)
+                                .addComponent(jRadioButtonH)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,6 +254,7 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
                 if (ciudadano != null) {
                     controller.eliminarCiudadano(cedula);
                     JOptionPane.showMessageDialog(this, "Ciudadano eliminado correctamente");
+                    limpiar();
                     jButton1.setEnabled(false);
                 } else {
                     JOptionPane.showMessageDialog(this, "El ciudadano con " + cedula + " \n" + " \n" + " no existe, por favor intentelo de nuevo");
@@ -264,7 +277,11 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
 
                 jTextField1.setText(ciudadano.getNombre());
                 jTextField3.setText(ciudadano.getApellido());
-                jTextField4.setText("true");
+                jComboBox1.setSelectedIndex(ciudadano.getTipoDocumento()-1);
+                if(ciudadano.isHombre())
+                    jRadioButtonH.setSelected(true);
+                else
+                    jRadioButtonM.setSelected(true);
                 jDateChooser1.setDate(ciudadano.getFechaNacimiento());
                 jButton1.setEnabled(true);
                 
@@ -282,6 +299,7 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -295,13 +313,21 @@ public class GUIDeleteCiudadano extends javax.swing.JFrame implements Cambiable{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButtonH;
+    private javax.swing.JRadioButton jRadioButtonM;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void cambio() {
+    }
+    
+    public void limpiar(){
+        jTextField1.setText("");
+        jTextField3.setText("");
+        jTextField5.setText("");
+        jDateChooser1.setDateFormatString("");
     }
 }
