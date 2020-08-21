@@ -66,6 +66,7 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -254,6 +255,9 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenuItem11.setText("Actualizar antecedente");
         jMenu2.add(jMenuItem11);
 
+        jMenuItem13.setText("Buscar antecedente");
+        jMenu2.add(jMenuItem13);
+
         jMenuItem10.setText("Mostrar antecedente");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -434,6 +438,7 @@ public class GUIMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
