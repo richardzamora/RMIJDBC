@@ -12,7 +12,7 @@ import java.sql.Date;
  *
  * @author Richard
  */
-public class Ciudadano implements Serializable{
+public class Ciudadano implements Serializable, CRUD{
    
     private String di;
     private Integer tipoDocumento;
@@ -103,4 +103,37 @@ public class Ciudadano implements Serializable{
         return "Ciudadano{" + "di=" + di + ", tipoDocumento=" + tipoDocumento + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + '}';
     }
 
+    
+    
+    @Override
+    public String crear() {
+        return "INSERT INTO public.ciudadanos(\n" +
+"	di, tipo_documento, nombre, apellido, fecha_nacimiento, genero)\n" +
+"	VALUES ('"+ di +"', "+ tipoDocumento +", '"+ nombre +"', '"+ apellido +"', "+ fechaNacimiento +", "+ genero +");";
+    }
+
+    @Override
+    public String leer() {
+        return "SELECT di, tipo_documento, nombre, apellido, fecha_nacimiento, genero\n" +
+"	FROM public.ciudadanos WHERE di='"+ di +"';";
+    }
+
+    @Override
+    public String leerTodos() {
+        return "SELECT di, tipo_documento, nombre, apellido, fecha_nacimiento, genero\n" +
+"	FROM public.ciudadanos;";
+    }
+
+    @Override
+    public String actualizar() {
+        return "UPDATE public.ciudadanos\n" +
+"	SET di='"+ di +"', tipo_documento="+ tipoDocumento +", nombre='"+ nombre +"', apellido='"+ apellido +"', fecha_nacimiento="+ fechaNacimiento +", genero="+ genero +"\n" +
+"	WHERE di='"+ di +"';";
+    }
+
+    @Override
+    public String eliminar() {
+       return "DELETE FROM public.ciudadanos\n" +
+"	WHERE di='"+ di +"';";
+    }
 }

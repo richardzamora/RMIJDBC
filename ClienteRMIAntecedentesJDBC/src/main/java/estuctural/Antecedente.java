@@ -12,8 +12,9 @@ import java.util.Date;
  *
  * @author Richard
  */
-public class Antecedente implements Serializable{
+public class Antecedente implements Serializable, CRUD{
     
+    private int id;
     private String ciudadanoDi;
     private int delitoCodigo;
     private String ciudad;
@@ -25,6 +26,16 @@ public class Antecedente implements Serializable{
     }
 
     public Antecedente(String ciudadanoDi, int delitoCodigo, String ciudad, Date fechaDelito, int sentencia, String estado) {
+        this.ciudadanoDi = ciudadanoDi;
+        this.delitoCodigo = delitoCodigo;
+        this.ciudad = ciudad;
+        this.fechaDelito = fechaDelito;
+        this.sentencia = sentencia;
+        this.estado = estado;
+    }
+    
+    public Antecedente(int id,String ciudadanoDi, int delitoCodigo, String ciudad, Date fechaDelito, int sentencia, String estado) {
+        this.id = id;
         this.ciudadanoDi = ciudadanoDi;
         this.delitoCodigo = delitoCodigo;
         this.ciudad = ciudad;
@@ -81,4 +92,46 @@ public class Antecedente implements Serializable{
         this.estado = estado;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Antecedente{" + "id=" + id + ", ciudadanoDi=" + ciudadanoDi + ", delitoCodigo=" + delitoCodigo + ", ciudad=" + ciudad + ", fechaDelito=" + fechaDelito + ", sentencia=" + sentencia + ", estado=" + estado + '}';
+    }
+
+    
+    @Override
+    public String crear() {
+        return "INSERT INTO public.antecedentes(\n" +
+"	ciudadano_di, delito_codigo, ciudad, fecha_delito, sentencia, estado)\n" +
+"	VALUES ('"+ ciudadanoDi +"', "+ delitoCodigo +", '"+ ciudad +"', "+ fechaDelito +", "+ sentencia +",'"+ estado +"');";
+    }
+
+    @Override
+    public String leer() {
+        return "SELECT id, ciudadano_di, delito_codigo, ciudad, fecha_delito, sentencia, estado\n" +
+"	FROM public.antecedentes WHERE id = "+ id +";";
+    }
+
+    @Override
+    public String leerTodos() {
+        return "SELECT id, ciudadano_di, delito_codigo, ciudad, fecha_delito, sentencia, estado\n" +
+"	FROM public.antecedentes;";
+    }
+
+    @Override
+    public String actualizar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String eliminar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
