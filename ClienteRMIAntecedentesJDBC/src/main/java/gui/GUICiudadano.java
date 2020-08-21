@@ -186,7 +186,6 @@ public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
             model.getDataVector().removeAllElements();
             if(!controller.darCiudadanos().isEmpty())
             {
-                System.out.println("dar ciudadano no anda vacío");
                 for (Ciudadano people : controller.darCiudadanos()) {
                     model.addRow(new Object[]{people.getNombre(),people.getApellido(), people.getFechaNacimiento(),people.getTipoDocumento(), people.getCedula()});
                 }    

@@ -7,10 +7,8 @@ package gui;
 
 import java.util.Date;
 import javax.swing.JOptionPane;
-import logica.estuctural.Ciudadano.TipoDocumento;
-import logica.estuctural.Ciudadano;
-import logica.Observer;
-import model.IServicioAntecedentes;
+import estuctural.TipoDocumento;
+import estuctural.Ciudadano;
 import model.IServiciosAntecedentesPenales;
 
 /**
@@ -20,7 +18,7 @@ import model.IServiciosAntecedentesPenales;
 public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
 
     private IServiciosAntecedentesPenales controller;
-    private Observer observer;
+
     
     /**
      * Creates new form GUIUpdate
@@ -28,7 +26,6 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
     public GUIUpdate(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller = controller;
-        observer = Observer.getInstance();
     }
 
     /**
@@ -46,7 +43,6 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -58,6 +54,7 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setTitle("Actualizar Ciudadano");
 
@@ -87,10 +84,6 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
         jLabel6.setToolTipText("");
 
         jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
-
-        jComboBox1.setForeground(new java.awt.Color(229, 229, 229));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(TipoDocumento.values()));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(229, 229, 229)));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -164,6 +157,8 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
 
         jLabel8.setIcon(new javax.swing.ImageIcon("imagenes\\actualizar240.png"));
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -183,9 +178,9 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel5))
                                 .addGap(26, 26, 26)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
@@ -240,16 +235,9 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
         // TODO add your handling code here:
         String cedula;
         cedula = jTextField5.getText().trim();
-        TipoDocumento tipoDocumento = (TipoDocumento)jComboBox1.getSelectedItem();
         try {
             if(!cedula.isEmpty()){
-                Ciudadano ciudadano = controller.darCiudadanoPorCedula(cedula, tipoDocumento);
-                if(ciudadano != null){
-                    observer.setUltimoCiudadano(controller.darCiudadanoPorCedula(cedula, tipoDocumento));
-                    observer.cambioEstado();
-                }else{
-                    JOptionPane.showMessageDialog(this, "El ciudadano con " + cedula + " \n" + " con el tipo de documento " + tipoDocumento + " \n" + " no existe, por favor intentelo de nuevo");
-                }
+                controller.darCiudadanoPorCedula(cedula);
             }else{
                 JOptionPane.showMessageDialog(this, "No ha digitado nigun número de identificación, \n por favor intentelo de nuevo");
             }
@@ -268,14 +256,12 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
             String direccion = jTextField4.getText().trim();
             Date fecha = jDateChooser1.getDate();
             String cedula = jTextField5.getText().trim();
-            TipoDocumento tipoDocumento = (TipoDocumento)jComboBox1.getSelectedItem();
+            int tipoDocumento = Integer.parseInt((String)jComboBox1.getSelectedItem());
                 if(nombre.isEmpty() || apellido.isEmpty() || direccion.isEmpty() || cedula.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intente de nuevo");
                 }
                 else{
-                    controller.actualizarCiudadano(nombre, apellido, direccion, fecha, cedula,tipoDocumento);
-                    observer.setUltimoCiudadano(controller.darCiudadanoPorCedula(cedula, tipoDocumento));
-                    observer.cambioEstado();
+                  controller.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, fecha, false);
                     JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
                 }
         } catch (Exception e) {
@@ -283,46 +269,12 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GUIUpdate().setVisible(true);
-//            }
-//        });
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<TipoDocumento> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -342,14 +294,5 @@ public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
 
     @Override
     public void cambio() {
-        if(observer.getUltimoCiudadano()!=null)
-        {
-            jTextField1.setText(observer.getUltimoCiudadano().getNombre());
-            jTextField3.setText(observer.getUltimoCiudadano().getApellido());
-            jTextField4.setText(observer.getUltimoCiudadano().getDireccion());
-            jDateChooser1.setDate(observer.getUltimoCiudadano().getFechaNacimiento());
-            jTextField5.setText(observer.getUltimoCiudadano().getCedula());
-            jComboBox1.setSelectedItem(observer.getUltimoCiudadano().getTipoDocumento());
-        }
     }
 }

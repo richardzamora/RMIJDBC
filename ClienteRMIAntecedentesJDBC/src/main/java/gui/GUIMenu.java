@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import logica.Observer;
 import estuctural.Ciudadano;
 import model.IServiciosAntecedentesPenales;
 import org.jfree.chart.ChartFactory;
@@ -29,12 +28,10 @@ public class GUIMenu extends javax.swing.JFrame {
      * Creates new form GUIPrincipal
      */
     private IServiciosAntecedentesPenales controller;
-    private Observer observer;
     
 
     public GUIMenu(IServiciosAntecedentesPenales controller) {
         this.controller = controller;
-        observer = Observer.getInstance();
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -275,7 +272,6 @@ public class GUIMenu extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         GUIAddAntecedente gui = new GUIAddAntecedente(controller);
-        observer.registrarVentaniUwU(gui);
         gui.show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -287,42 +283,36 @@ public class GUIMenu extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         GUIAdd gui = new GUIAdd(controller);
-        observer.registrarVentaniUwU(gui);
         gui.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         GUIUpdate gui = new GUIUpdate(controller);
-        observer.registrarVentaniUwU(gui);
         gui.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         GUIDelete gui = new GUIDelete(controller);
-        observer.registrarVentaniUwU(gui);
         gui.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
         GUIDeleteAntecedente gui = new GUIDeleteAntecedente(controller);
-        observer.registrarVentaniUwU(gui);
         gui.show();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
         GUICiudadano gui = new GUICiudadano(controller);
-        observer.registrarVentaniUwU(gui);
         gui.show();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
         GUIAntecedentes gui = new GUIAntecedentes(controller);
-        observer.registrarVentaniUwU(gui);
         gui.show();
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
