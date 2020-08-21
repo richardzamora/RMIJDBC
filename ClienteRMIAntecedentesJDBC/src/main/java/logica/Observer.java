@@ -7,7 +7,7 @@ package logica;
 
 import gui.Cambiable;
 import java.util.ArrayList;
-import logica.estuctural.Ciudadano;
+import estuctural.Ciudadano;
 
 /**
  *

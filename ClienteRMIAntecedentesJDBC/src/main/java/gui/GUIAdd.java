@@ -8,8 +8,8 @@ package gui;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-import logica.Observer;
 import model.IServiciosAntecedentesPenales;
+import estuctural.TipoDocumento;
 
 /**
  *
@@ -21,12 +21,10 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
      * Creates new form GUIAdd
      */
     private IServiciosAntecedentesPenales controller;
-    private Observer observer;
     
     public GUIAdd(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller =  controller;
-        observer = Observer.getInstance();
     }
 
     
@@ -49,13 +47,13 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setTitle("Añadir Ciudadano");
         setBackground(new java.awt.Color(255, 255, 255));
@@ -81,9 +79,6 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
 
         jLabel5.setText("Tipo de documento");
         jLabel5.setToolTipText("");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(TipoDocumento.values()));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(220, 220, 220)));
 
         jLabel6.setText("Numero de identificación ");
         jLabel6.setToolTipText("");
@@ -124,6 +119,8 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
 
         jDateChooser1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(220, 220, 220)));
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3"}));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,9 +146,9 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
                     .addComponent(jTextField1)
                     .addComponent(jTextField3)
                     .addComponent(jTextField4)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, 202, Short.MAX_VALUE)
-                    .addComponent(jTextField5))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(jTextField5)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,7 +161,7 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,15 +178,15 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(23, 23, 23)
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -220,14 +217,12 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
                 String direccion = jTextField4.getText().trim();
                 Date fecha = jDateChooser1.getDate();
                 String cedula = jTextField5.getText().trim();
-                int tipoDocumento = (int)jComboBox1.getSelectedItem();
+                int tipoDocumento = Integer.parseInt((String) jComboBox1.getSelectedItem());
             if(nombre.isEmpty() || apellido.isEmpty() || direccion.isEmpty() || cedula.isEmpty() || fecha==null) {
                 JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intente de nuevo");
             }
             else{
-                controller.agregarCiudadano(nombre, apellido, direccion, fecha, cedula, tipoDocumento);
-                observer.setUltimoCiudadano(controller.darCiudadanoPorCedula(cedula, tipoDocumento));
-                observer.cambioEstado();
+                controller.agregarCiudadano(cedula, tipoDocumento, nombre, apellido, fecha, true);
                 JOptionPane.showMessageDialog(this, "El ciudadano fue agregado correctamente");
             }
         } catch (Exception e) {
@@ -235,56 +230,11 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GUIAdd().setVisible(true);
-//            }
-//        });
-    }
-
-    public void cambio() {
-        if(observer.getUltimoCiudadano()!= null)
-        {
-            jTextField1.setText(observer.getUltimoCiudadano().getNombre());
-            jTextField3.setText(observer.getUltimoCiudadano().getApellido());
-            jTextField4.setText(observer.getUltimoCiudadano().getDireccion());
-            jDateChooser1.setDate(observer.getUltimoCiudadano().getFechaNacimiento());
-            jComboBox1.setSelectedItem(observer.getUltimoCiudadano().getTipoDocumento());
-            jTextField5.setText(observer.getUltimoCiudadano().getCedula());
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<TipoDocumento> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -301,4 +251,9 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void cambio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
