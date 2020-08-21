@@ -102,4 +102,9 @@ public class ServicioAntecedentesPenales extends UnicastRemoteObject implements 
         return servicioAntecedente.darAntecedentePorId(id);
     }
 
+    @Override
+    public int darSentenciaTotalPorCiudadano(String ciudadanoDi) throws RemoteException {
+        return servicioAntecedente.darSentenciaTotalPorCiudadano(ciudadanoDi);
+    }
+
 }

@@ -108,5 +108,19 @@ public class ServicioAntecedente {
         antecedente.setId(id);
         return conn.executeUpdate(antecedente.eliminar());
     }
- 
+    
+    public int darSentenciaTotalPorCiudadano(String ciudadanoDi)
+    {
+        int sentencia = 0;
+        sentencia = darAntecedentes().stream().filter(antecedente -> (antecedente.getCiudadanoDi().equals(ciudadanoDi))).map(antecedente -> antecedente.getSentencia()).reduce(sentencia, Integer::sum);
+
+//        for(Antecedente antecedente:darAntecedentes())
+//        {
+//            if(antecedente.getCiudadanoDi().equals(ciudadanoDi))
+//            {
+//                sentencia+=antecedente.getSentencia();
+//            }
+//        }
+        return sentencia;
+    }
 }
