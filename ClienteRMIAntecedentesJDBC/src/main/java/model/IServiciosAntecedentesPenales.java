@@ -49,6 +49,14 @@ public interface IServiciosAntecedentesPenales extends Remote{
     public boolean eliminarAntecedente(int id) throws RemoteException;
     
     public int darSentenciaTotalPorCiudadano(String ciudadanoDi) throws RemoteException;
+    
+    ////--------------------------Filtros------------------------------////
+    
+    public ArrayList<Antecedente> darAntecedentesPorCiudadano(String ciudadanoDi)throws RemoteException;
+    
+    public ArrayList<Antecedente> darAntecedentesPorDelito(int delitoCodigo)throws RemoteException;
+    
+    public ArrayList<Antecedente> darAntecedentesPorCiudadanoYDelito(String ciudadanoDi, int delitoCodigo)throws RemoteException;
     //----------------------------TipoDocumento----------------------------
     public TipoDocumento darTipoDocumentoPorCodigo(int codigo) throws RemoteException;
     

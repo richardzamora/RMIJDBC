@@ -224,6 +224,11 @@ public class GUIAddCiudadano extends javax.swing.JFrame implements Cambiable{
             else{
                 controller.agregarCiudadano(cedula, tipoDocumento, nombre, apellido, fecha, true);
                 JOptionPane.showMessageDialog(this, "El ciudadano fue agregado correctamente");
+                jTextField1.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jDateChooser1.setDateFormatString("");
+                jTextField5.setText("");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "La fecha debe tener el formato: yyyy-mm-dd");
