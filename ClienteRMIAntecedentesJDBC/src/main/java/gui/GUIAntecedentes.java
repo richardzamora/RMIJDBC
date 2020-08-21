@@ -11,11 +11,9 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import logica.estuctural.Antecedente;
-import logica.estuctural.Ciudadano;
-import logica.estuctural.Ciudadano.TipoDocumento;
-import logica.Observer;
-import model.IServicioAntecedentes;
+import estuctural.Antecedente;
+import estuctural.Ciudadano;
+import estuctural.TipoDocumento;
 import model.IServiciosAntecedentesPenales;
 
 /**
@@ -25,14 +23,12 @@ import model.IServiciosAntecedentesPenales;
 public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
 
     private IServiciosAntecedentesPenales controller;
-    private Observer observer;
     /**
      * Creates new form GUIAntecedentes
      */
     public GUIAntecedentes(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller = controller;
-        observer = Observer.getInstance();
     }
 
     /**
@@ -46,12 +42,9 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setTitle("Ver Antecedentes");
         setResizable(false);
@@ -65,17 +58,6 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ANTECEDENTES");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(TipoDocumento.values()));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(220, 220, 220)));
-
-        jLabel5.setText("Tipo de documento");
-        jLabel5.setToolTipText("");
-
-        jLabel6.setText("Numero de identificación ");
-        jLabel6.setToolTipText("");
-
-        jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(220, 220, 220)));
-
         jButton1.setBackground(new java.awt.Color(229, 229, 229));
         jButton1.setFont(new java.awt.Font("Lucida Fax", 2, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(3, 59, 118));
@@ -87,58 +69,74 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon("imagenes\\antecedentes.png"));
+        jTable1.setBackground(new java.awt.Color(229, 229, 229));
+        jTable1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Ciudadano_Di", "Delito_Codigo", "Fecha_Delito", "Sentencia", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setSelectionForeground(new java.awt.Color(3, 59, 118));
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(46, 46, 46)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(82, 82, 82))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(195, 195, 195))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(258, 258, 258)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(282, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(165, 165, 165)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(165, Short.MAX_VALUE)))
         );
-
-        jLabel2.getAccessibleContext().setAccessibleName("label2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,75 +155,18 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        String cedula = (String)jTable1.getValueAt(row, 5);
         try {
-            String cedula = jTextField5.getText().trim();
-            TipoDocumento tipoDocumento = (TipoDocumento) jComboBox1.getSelectedItem();
-            Ciudadano ciudadano = controller.darCiudadanoPorCedula(cedula, tipoDocumento);
-            observer.setUltimoCiudadano(ciudadano);
-            observer.cambioEstado();
-            Antecedente antecedente = controller.darPrimerAntecedente(cedula, tipoDocumento);
-            LocalDateTime actual = LocalDateTime.now();
-            String fechaHora = actual.getHour()+ " horas del dia " + actual.getDayOfMonth() + " de " + actual.getMonth() + " del " + actual.getYear();
-            if(!cedula.isEmpty()) {
-                if(ciudadano != null) {
-                    if (ciudadano.getAntecedentes().isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "                                                                Consulta en línea de Antecedentes Penales y Requerimientos Judiciales\n" +
-                                "\n" +
-                                "\n" +
-                                "                                                                                            La Policía Nacional de Colombia informa:\n" +
-                                "\n" +
-                                "                                                          Que siendo las " + fechaHora + " , el ciudadano identificado con:\n" +
-                                "                                                                                               Cédula de Ciudadanía N° " + jTextField5.getText() + "\n" +
-                                "                                                                              Apellidos y Nombres: " + observer.getUltimoCiudadano().getApellido() + " " + observer.getUltimoCiudadano().getNombre() + "\n" +
-                                "\n" +
-                                "\n" +
-                                "           NO TIENE ASUNTOS PENDIENTES CON LAS AUTORIDADES JUDICIALES\n" +
-                                "           de conformidad con lo establecido en el art�culo 248 de la Constitución Política de Colombia.\n" +
-                                "\n" +
-                                "           En cumplimiento de la Sentencia SU-458 del 21 de junio de 2012, proferida por la Honorable Corte Constitucional, la leyenda" + "\n" +
-                                "           NO TIENE ASUNTOS PENDIENTES CON LAS AUTORIDADES JUDICIALES� aplica para todas aquellas personas que no registran antecedentes" + "\n" +
-                                "           y para quienes la autoridad judicial competente haya decretado la extinción de la condena o la prescripción de la pena.\n" +
-                                "\n" +
-                                "           Esta consulta es válida siempre y cuando el número de identificación y nombres, correspondan con el documento de identidad registrado" + "\n" +
-                                "           y solo aplica para el territorio colombiano de acuerdo a lo establecido en el ordenamiento constitucional.\n" +
-                                "\n" +
-                                "           Si tiene alguna duda con el resultado, consulte las preguntas frecuentes o acérquese a las instalaciones de la Policía Nacional más cercanas.");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "                                                                Consulta en línea de Antecedentes Penales y Requerimientos Judiciales\n" +
-                                "\n" +
-                                "\n" +
-                                "                                                                                            La Policía Nacional de Colombia informa:\n" +
-                                "\n" +
-                                "                                                          Que siendo las " + fechaHora + " , el ciudadano identificado con:\n" +
-                                "                                                                                               Cédula de Ciudadanía N° " + jTextField5.getText() + "\n" +
-                                "                                                                              Apellidos y Nombres: " + observer.getUltimoCiudadano().getApellido() + " " + observer.getUltimoCiudadano().getNombre() + "\n" +
-                                "\n" +
-                                "\n" +
-                                "           PRESENTA LOS SIGUIENTES PENDIENTES CON LAS AUTORIDADES JUDICIALES\n" +
-                                "           de conformidad con lo establecido en el artículo 248 de la Constitución Política de Colombia.\n" +
-                                "\n" +
-                                "           En cumplimiento de la Sentencia SU-458 del 21 de junio de 2012, proferida por la Honorable Corte Constitucional, la leyenda" + "\n" +
-                                "          SE ENCUENTRA QUE APLICA EL SIGUIENTE ANTECEDENTE JUDICIAl� DADO POR UN TIPO DE CRIMEN DE " + antecedente.getTipoDeCrimen() + "\n" +
-                                "           EJECUTADO DE MANERA " + antecedente.getDetalles() + "\n" +
-                                "           Aplica para todos aquellos que presenten antecedentes\n" +
-                                "           y para quienes la autoridad judicial competente haya decretado la extinci�n de la condena o la prescripci�n de la pena.\n" +
-                                "\n" +
-                                "           Esta consulta es válida siempre y cuando el número de identificación y nombres, correspondan con el documento de identidad registrado" + "\n" +
-                                "           y solo aplica para el territorio colombiano de acuerdo a lo establecido en el ordenamiento constitucional.\n" +
-                                "\n" +
-                                "           Si tiene alguna duda con el resultado, consulte las preguntas frecuentes o acérquese a las instalaciones de la Policía Nacional más cercanas.");
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(this,"El ciudadano con " + cedula + " \n" + " con el tipo de documento " + tipoDocumento + " \n" + " no existe, por favor intentelo de nuevo");
-                }
-            }else{
-                JOptionPane.showMessageDialog(this,"Por favor digite el número de identificación!");
-            }
+            Ciudadano persona = controller.darCiudadanoPorCedula(cedula);
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
-     
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -264,22 +205,15 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<TipoDocumento> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
     //TODO implementar
     @Override
     public void cambio() {
-        if(observer.getUltimoCiudadano()!= null)
-        {
-            jTextField5.setText(observer.getUltimoCiudadano().getCedula());
-            jComboBox1.setSelectedItem(observer.getUltimoCiudadano().getTipoDocumento());
-        }
+
     }
 }
