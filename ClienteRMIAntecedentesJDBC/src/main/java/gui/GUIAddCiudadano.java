@@ -15,14 +15,14 @@ import estuctural.TipoDocumento;
  *
  * @author Estudiantes
  */
-public class GUIAdd extends javax.swing.JFrame implements Cambiable{
+public class GUIAddCiudadano extends javax.swing.JFrame implements Cambiable{
 
     /**
-     * Creates new form GUIAdd
+     * Creates new form GUIAddCiudadano
      */
     private IServiciosAntecedentesPenales controller;
     
-    public GUIAdd(IServiciosAntecedentesPenales controller) {
+    public GUIAddCiudadano(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller =  controller;
     }

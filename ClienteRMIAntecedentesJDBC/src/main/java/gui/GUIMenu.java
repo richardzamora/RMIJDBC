@@ -282,19 +282,19 @@ public class GUIMenu extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        GUIAdd gui = new GUIAdd(controller);
+        GUIAddCiudadano gui = new GUIAddCiudadano(controller);
         gui.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        GUIUpdate gui = new GUIUpdate(controller);
+        GUIUpdateCiudadano gui = new GUIUpdateCiudadano(controller);
         gui.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        GUIDelete gui = new GUIDelete(controller);
+        GUIDeleteCiudadano gui = new GUIDeleteCiudadano(controller);
         gui.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
