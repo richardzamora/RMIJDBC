@@ -71,6 +71,7 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
         jButton1.setForeground(new java.awt.Color(3, 59, 118));
         jButton1.setText("Actualizar");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -243,6 +244,8 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
                 jTextField3.setText(ciudadano.getApellido());
                 jTextField4.setText("true");
                 jDateChooser1.setDate(ciudadano.getFechaNacimiento());
+                jButton1.setEnabled(true);
+                
             }else{
                 JOptionPane.showMessageDialog(this, "No ha digitado nigun número de identificación, \n por favor intentelo de nuevo");
             }
@@ -267,6 +270,7 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
                 else{
                   controller.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, (Date)fecha, false);
                     JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
+                    jButton1.setEnabled(false);
                 }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
