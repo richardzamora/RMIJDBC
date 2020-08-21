@@ -247,9 +247,12 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable, 
             if((delitoCodigo < 0 ) && fecha == null && ciudad.isEmpty() && (sentencia < 0) && cedula.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intentelo de nuevo");
             }else{
-                controller.agregarAntecedente(cedula, delitoCodigo, ciudad, fecha, sentencia, estado);
-                JOptionPane.showMessageDialog(this, "Antecedente añadido correctamente");
-                limpiar();
+                if(controller.agregarAntecedente(cedula, delitoCodigo, ciudad, fecha, sentencia, estado)){
+                    JOptionPane.showMessageDialog(this, "Antecedente añadido correctamente");
+                    limpiar();
+                }else{
+                    JOptionPane.showMessageDialog(this, "El antecedente no pudo ser añadido");
+                }
             }
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());

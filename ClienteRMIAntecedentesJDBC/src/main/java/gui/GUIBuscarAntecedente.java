@@ -249,6 +249,8 @@ public class GUIBuscarAntecedente extends javax.swing.JFrame implements IBuscarC
                 jTextFieldEstado.setText(antecedentes.get(0).getEstado().trim());
                 jTextFieldSentencia.setText(antecedentes.get(0).getSentencia()+"");
                 jDateChooser1.setDate(antecedentes.get(0).getFechaDelito());
+            }else{
+                JOptionPane.showMessageDialog(this,"El antecedente no fue encontrado");
             }
         } catch (RemoteException ex) {
             Logger.getLogger(GUIDeleteAntecedente.class.getName()).log(Level.SEVERE, null, ex);

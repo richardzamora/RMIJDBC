@@ -221,6 +221,7 @@ public class GUIBuscarCiudadano extends javax.swing.JFrame {
                     jRadioButtonM.setSelected(true);
                 
                 jDateChooser1.setDate(ciudadano.getFechaNacimiento());
+               
                 
             }else{
                 JOptionPane.showMessageDialog(this, "No ha digitado nigun número de identificación, \n por favor intentelo de nuevo");

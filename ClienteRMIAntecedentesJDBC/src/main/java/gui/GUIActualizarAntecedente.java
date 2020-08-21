@@ -298,10 +298,13 @@ public class GUIActualizarAntecedente extends javax.swing.JFrame implements IBus
                 JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intente de nuevo");
             }
             else{
-                controller.actualizarAntecedente(id, ciudadano, delito, ciudad, fechaDelito, sentencia, estado);
-                JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
-                limpiar();
-                jButtonActualizar.setEnabled(false);
+                if(controller.actualizarAntecedente(id, ciudadano, delito, ciudad, fechaDelito, sentencia, estado)){
+                    JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
+                    limpiar();
+                    jButtonActualizar.setEnabled(false);
+                }else{
+                    JOptionPane.showMessageDialog(this, "El ciudadano no pudo ser actualizado");
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

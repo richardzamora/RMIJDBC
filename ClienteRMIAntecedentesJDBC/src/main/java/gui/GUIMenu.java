@@ -68,6 +68,7 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
 
@@ -276,6 +277,14 @@ public class GUIMenu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem10);
 
+        jMenuItem14.setText("Calcular total de sentencias");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem14);
+
         jMenuBar1.add(jMenu2);
 
         jMenu4.setForeground(new java.awt.Color(238, 238, 238));
@@ -416,6 +425,12 @@ public class GUIMenu extends javax.swing.JFrame {
         gui.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        GUICalcularSentencia gui = new GUICalcularSentencia(controller);
+        gui.show();
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -467,6 +482,7 @@ public class GUIMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -284,10 +284,13 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
                     JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intente de nuevo");
                 }
                 else{
-                  controller.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, (Date)fecha, jRadioButtonH.isSelected());
-                    JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
-                    limpiar();
-                    jButton1.setEnabled(false);
+                    if(controller.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, (Date)fecha, jRadioButtonH.isSelected())){
+                        JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
+                        limpiar();
+                        jButton1.setEnabled(false);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "El ciudadano no pudo ser actualizado");
+                    }
                 }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

@@ -233,9 +233,12 @@ public class GUIAddCiudadano extends javax.swing.JFrame{
                 }
                 else{
                   boolean accion=controller.agregarCiudadano(cedula, tipoDocumento, nombre, apellido, (Date)fecha, jRadioButtonH.isSelected());
-                  if(accion)
-                  JOptionPane.showMessageDialog(this, "El ciudadano fue agregado correctamente");
-                  limpiar();
+                  if(accion){
+                    JOptionPane.showMessageDialog(this, "El ciudadano fue agregado correctamente");
+                    limpiar();
+                  }else{
+                      JOptionPane.showMessageDialog(this, "El ciudadano no pudo ser añadido");
+                  }
                 }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

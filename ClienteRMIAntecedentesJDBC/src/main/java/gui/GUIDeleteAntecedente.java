@@ -219,6 +219,8 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
             {
                 JOptionPane.showMessageDialog(this,"Antecedente eliminado correctamente");
                 jButtonEliminar.setEnabled(false);
+            }else{
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el antecedente");
             }
         } catch (RemoteException ex) {
             Logger.getLogger(GUIDeleteAntecedente.class.getName()).log(Level.SEVERE, null, ex);
