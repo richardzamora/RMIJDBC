@@ -22,6 +22,7 @@ import model.IServiciosAntecedentesPenales;
 public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
 
     private IServiciosAntecedentesPenales controller;
+    private IBuscarCiudadano ventanaObjetivo;
     /**
      * Creates new form GUICrud
      */
@@ -29,6 +30,13 @@ public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
         initComponents();
         this.controller =controller;
         cambio();
+        ventanaObjetivo = null;
+    }
+    public GUICiudadano(IServiciosAntecedentesPenales controller, IBuscarCiudadano ventana) {
+        initComponents();
+        this.controller =controller;
+        cambio();
+        ventanaObjetivo = ventana;
     }
 
     /**
@@ -164,6 +172,10 @@ public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
         String cedula = (String)jTable1.getValueAt(row, 5);
         try {
             Ciudadano persona = controller.darCiudadanoPorCedula(cedula);
+            if(ventanaObjetivo!=null)
+            {
+                ventanaObjetivo.cambiarTxtCiudadano(cedula);
+            }
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }

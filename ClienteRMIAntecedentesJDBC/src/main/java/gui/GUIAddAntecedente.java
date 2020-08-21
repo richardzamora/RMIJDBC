@@ -110,7 +110,7 @@ public class GUIAddAntecedente extends javax.swing.JFrame implements Cambiable{
 
         jButton6.setBackground(new java.awt.Color(229, 229, 229));
         jButton6.setForeground(new java.awt.Color(3, 59, 118));
-        jButton6.setText("Buscar UwUCiudadano");
+        jButton6.setText("Buscar Ciudadano");
         jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

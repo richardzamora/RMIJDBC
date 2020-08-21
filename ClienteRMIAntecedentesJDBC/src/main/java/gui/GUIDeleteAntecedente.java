@@ -5,33 +5,30 @@
  */
 package gui;
 
+import estuctural.Antecedente;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import logica.estuctural.Ciudadano.TipoDocumento;
-import logica.estuctural.Ciudadano;
-import logica.Observer;
-import model.IServicioAntecedentes;
 import model.IServiciosAntecedentesPenales;
 
 /**
  *
  * @author Estudiantes
  */
-public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiable{
+public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiable, IBuscarDelito, IBuscarCiudadano{
 
     /**
      * Creates new form GUIDeleteAntecedente
      */
     private IServiciosAntecedentesPenales controller;
-    private Observer observer;
     
     public GUIDeleteAntecedente(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller=controller;
-        observer = Observer.getInstance();
+        jButtonEliminar.setEnabled(false);
     }
 
     /**
@@ -46,14 +43,14 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTextFieldDI = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        jTextFieldIdAntecedente = new javax.swing.JTextField();
+        jButtonEliminar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
+        jTextFieldDelito = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -66,7 +63,7 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ANTECEDENTES");
 
-        jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(117, 56, 56)));
+        jTextFieldDI.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(229, 229, 229)));
 
         jLabel6.setText("Numero de identificación ");
         jLabel6.setToolTipText("");
@@ -77,14 +74,18 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
         jLabel8.setText("Id Antecedente");
         jLabel8.setToolTipText("");
 
-        jTextField6.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(117, 56, 56)));
+        jTextFieldIdAntecedente.setEditable(false);
+        jTextFieldIdAntecedente.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldIdAntecedente.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(229, 229, 229)));
+        jTextFieldIdAntecedente.setEnabled(false);
+        jTextFieldIdAntecedente.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        jButton5.setFont(new java.awt.Font("Lucida Fax", 2, 24)); // NOI18N
-        jButton5.setText("Eliminar");
-        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEliminar.setFont(new java.awt.Font("Lucida Fax", 2, 24)); // NOI18N
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtonEliminarActionPerformed(evt);
             }
         });
 
@@ -95,11 +96,21 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
             }
         });
 
-        jTextField7.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(117, 56, 56)));
+        jTextFieldDelito.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(229, 229, 229)));
 
         jButton2.setText("...");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("...");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -109,36 +120,33 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldDI, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldDelito, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jTextFieldIdAntecedente, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(195, 195, 195))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(194, 194, 194))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(61, 61, 61)
@@ -152,11 +160,11 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
                 .addComponent(jLabel1)
                 .addGap(69, 69, 69)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldDelito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
@@ -164,9 +172,9 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                    .addComponent(jTextFieldIdAntecedente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                .addComponent(jButtonEliminar)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -203,33 +211,38 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
-            observer.getUltimoCiudadano().deleteAllAntecedentes();
-            observer.cambioEstado();
             JOptionPane.showMessageDialog(this,"Antecedente eliminado correctamente");
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String cedula = jTextField5.getText().trim();
-        TipoDocumento tipoDocumento = (TipoDocumento)jComboBox1.getSelectedItem();
-        
-        Ciudadano ciudadano;
         try {
-            ciudadano = controller.darCiudadanoPorCedula(cedula, tipoDocumento);
-            observer.setUltimoCiudadano(controller.darCiudadanoPorCedula(cedula, tipoDocumento));
-            observer.cambioEstado();
-            if(ciudadano != null)
-            JOptionPane.showMessageDialog(this, "El ciudadano selecionado es: " + ciudadano.getNombre() + " " + ciudadano.getApellido());
-        else
-            JOptionPane.showMessageDialog(this, "El ciudadano con la cedula: "+ cedula + " no existe.");
-        
+            // TODO add your handling code here:
+            String ciudadanoDi = jTextFieldDI.getText();
+            int codigoDelito = Integer.parseInt(jTextFieldDelito.getText());
+            ArrayList<Antecedente> antecedentes = controller.darAntecedentesPorCiudadanoYDelito(ciudadanoDi, codigoDelito);
+            if(!antecedentes.isEmpty())
+            {
+                String codigoId = ""+  antecedentes.get(0).getId();
+                jTextFieldIdAntecedente.setText(codigoId);
+                jButtonEliminar.setEnabled(true);
+            }
         } catch (RemoteException ex) {
-            System.out.println(ex.getMessage());
+            Logger.getLogger(GUIDeleteAntecedente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        GUIMostrarDelito gui = new GUIMostrarDelito(controller, this);
+        gui.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,26 +283,36 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextFieldDI;
+    private javax.swing.JTextField jTextFieldDelito;
+    private javax.swing.JTextField jTextFieldIdAntecedente;
     // End of variables declaration//GEN-END:variables
 
     //TODO Implementar
     @Override
     public void cambio() {
-         if(observer.getUltimoCiudadano()!= null)
-         {
-             jTextField5.setText(observer.getUltimoCiudadano().getCedula());
-             jComboBox1.setSelectedItem(observer.getUltimoCiudadano().getTipoDocumento());
-         }
+//         if(observer.getUltimoCiudadano()!= null)
+//         {
+//             jTextField5.setText(observer.getUltimoCiudadano().getCedula());
+//             jComboBox1.setSelectedItem(observer.getUltimoCiudadano().getTipoDocumento());
+//         }
              
+    }
+
+    @Override
+    public void cambiarTxtDelito(int codigoDelito) {
+        jTextFieldDelito.setText(""+codigoDelito);
+    }
+
+    @Override
+    public void cambiarTxtCiudadano(String CiudadanoDI) {
+        jTextFieldDI.setText(CiudadanoDI);
     }
 }

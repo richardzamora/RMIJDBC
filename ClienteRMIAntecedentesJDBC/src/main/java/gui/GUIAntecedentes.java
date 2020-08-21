@@ -14,13 +14,15 @@ import javax.swing.JOptionPane;
 import estuctural.Antecedente;
 import estuctural.Ciudadano;
 import estuctural.TipoDocumento;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import model.IServiciosAntecedentesPenales;
 
 /**
  *
  * @author Estudiantes
  */
-public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
+public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable, IBuscarDelito{
 
     private IServiciosAntecedentesPenales controller;
     /**
@@ -42,9 +44,14 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableAntecedentes = new javax.swing.JTable();
+        jCheckBoxDI = new javax.swing.JCheckBox();
+        jCheckBoxDelito = new javax.swing.JCheckBox();
+        jTextFieldDI = new javax.swing.JTextField();
+        jTextFieldDelito = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButtonFiltrar = new javax.swing.JButton();
 
         setTitle("Ver Antecedentes");
         setResizable(false);
@@ -58,20 +65,9 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ANTECEDENTES");
 
-        jButton1.setBackground(new java.awt.Color(229, 229, 229));
-        jButton1.setFont(new java.awt.Font("Lucida Fax", 2, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(3, 59, 118));
-        jButton1.setText("Mostrar");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jTable1.setBackground(new java.awt.Color(229, 229, 229));
-        jTable1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAntecedentes.setBackground(new java.awt.Color(229, 229, 229));
+        jTableAntecedentes.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        jTableAntecedentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -94,15 +90,37 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setSelectionForeground(new java.awt.Color(3, 59, 118));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableAntecedentes.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableAntecedentes.setSelectionForeground(new java.awt.Color(3, 59, 118));
+        jTableAntecedentes.getTableHeader().setReorderingAllowed(false);
+        jTableAntecedentes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                jTableAntecedentesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableAntecedentes);
+
+        jCheckBoxDI.setText("DI");
+
+        jCheckBoxDelito.setText("Delito");
+
+        jButton2.setText("...");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButtonFiltrar.setBackground(new java.awt.Color(229, 229, 229));
+        jButtonFiltrar.setFont(new java.awt.Font("Lucida Fax", 2, 18)); // NOI18N
+        jButtonFiltrar.setForeground(new java.awt.Color(3, 59, 118));
+        jButtonFiltrar.setText("Filtrar/mostrar");
+        jButtonFiltrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFiltrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,8 +132,19 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
                         .addGap(258, 258, 258)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxDI)
+                            .addComponent(jTextFieldDI, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxDelito)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFieldDelito, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonFiltrar)))
                 .addContainerGap(282, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -128,14 +157,22 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxDI)
+                    .addComponent(jCheckBoxDelito))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldDelito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
+                    .addComponent(jButtonFiltrar))
+                .addContainerGap(383, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(165, 165, 165)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(165, Short.MAX_VALUE)))
+                    .addGap(149, 149, 149)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(84, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,33 +190,95 @@ public class GUIAntecedentes extends javax.swing.JFrame implements Cambiable{
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void jTableAntecedentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAntecedentesMouseClicked
         // TODO add your handling code here:
-        int row = jTable1.getSelectedRow();
-        String cedula = (String)jTable1.getValueAt(row, 5);
+        int row = jTableAntecedentes.getSelectedRow();
+        String cedula = (String)jTableAntecedentes.getValueAt(row, 5);
         try {
             Ciudadano persona = controller.darCiudadanoPorCedula(cedula);
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_jTableAntecedentesMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        GUIMostrarDelito gui = new GUIMostrarDelito(controller, this);
+        gui.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
+        // TODO add your handling code here:
+        ArrayList<Antecedente> antecedentes = new ArrayList<>();
+        if(jCheckBoxDI.isSelected()){
+            if(jCheckBoxDelito.isSelected()){
+                try {
+                    antecedentes = controller.darAntecedentesPorCiudadanoYDelito(jTextFieldDI.getText(), Integer.parseInt(jTextFieldDelito.getText()));
+                } catch (RemoteException ex) {
+                    JOptionPane.showMessageDialog(this, "Alguno de los parametros es incorrecto");
+                }
+            }
+            else{
+                try {
+                    antecedentes = controller.darAntecedentesPorCiudadano(jTextFieldDI.getText());
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GUIAntecedentes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+        }
+        else if(jCheckBoxDelito.isSelected())
+        {
+            try {
+                antecedentes = controller.darAntecedentesPorDelito(Integer.parseInt(jTextFieldDelito.getText()));
+            } catch (RemoteException ex) {
+               JOptionPane.showMessageDialog(this, "El codigo del delito es incorrecto");
+            }
+        }
+        else
+        {
+            try {
+                antecedentes = controller.darAntecedentes();
+            } catch (RemoteException ex) {
+                Logger.getLogger(GUIAntecedentes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        llenarGrilla(antecedentes);
+    }//GEN-LAST:event_jButtonFiltrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonFiltrar;
+    private javax.swing.JCheckBox jCheckBoxDI;
+    private javax.swing.JCheckBox jCheckBoxDelito;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableAntecedentes;
+    private javax.swing.JTextField jTextFieldDI;
+    private javax.swing.JTextField jTextFieldDelito;
     // End of variables declaration//GEN-END:variables
 
     //TODO implementar
     @Override
     public void cambio() {
 
+    }
+
+    @Override
+    public void cambiarTxtDelito(int codigoDelito) {
+       jTextFieldDelito.setText("" + codigoDelito);
+    }
+    
+    public void llenarGrilla(ArrayList<Antecedente> lista)
+    {
+        DefaultTableModel model = (DefaultTableModel) jTableAntecedentes.getModel();
+        model.getDataVector().removeAllElements();
+        if(!lista.isEmpty())
+        {
+            for (Antecedente antecedente : lista) {
+                model.addRow(new Object[]{antecedente.getId(), antecedente.getCiudadanoDi(), antecedente.getDelitoCodigo(), antecedente.getFechaDelito(), antecedente.getSentencia(), antecedente.getEstado()});    
+            }
+        }
     }
 }

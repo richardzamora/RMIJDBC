@@ -6,7 +6,9 @@
 package gui;
 
 import estuctural.Ciudadano;
+import estuctural.Delito;
 import java.rmi.RemoteException;
+import javax.swing.table.DefaultTableModel;
 import model.IServiciosAntecedentesPenales;
 
 /**
@@ -16,12 +18,15 @@ import model.IServiciosAntecedentesPenales;
 public class GUIMostrarDelito extends javax.swing.JFrame {
 
     private IServiciosAntecedentesPenales controller;
+    private IBuscarDelito ventanaObjetivo;
     /**
      * Creates new form GUIMostrarDelito
      */
-    public GUIMostrarDelito(IServiciosAntecedentesPenales controller) {
+    public GUIMostrarDelito(IServiciosAntecedentesPenales controller, IBuscarDelito buscarDelito) {
         initComponents();
         this.controller = controller;
+        ventanaObjetivo= buscarDelito;
+        llenarGrilla();
     }
 
     /**
@@ -35,16 +40,16 @@ public class GUIMostrarDelito extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jTableDelitos = new javax.swing.JTable();
 
         setTitle("Delitos");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTable3.setBackground(new java.awt.Color(229, 229, 229));
-        jTable3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDelitos.setBackground(new java.awt.Color(229, 229, 229));
+        jTableDelitos.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        jTableDelitos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,15 +72,15 @@ public class GUIMostrarDelito extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable3.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jTable3.setSelectionForeground(new java.awt.Color(3, 59, 118));
-        jTable3.getTableHeader().setReorderingAllowed(false);
-        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableDelitos.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableDelitos.setSelectionForeground(new java.awt.Color(3, 59, 118));
+        jTableDelitos.getTableHeader().setReorderingAllowed(false);
+        jTableDelitos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable3MouseClicked(evt);
+                jTableDelitosMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jTableDelitos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,27 +111,43 @@ public class GUIMostrarDelito extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+    private void jTableDelitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDelitosMouseClicked
         // TODO add your handling code here:
-        int row = jTable1.getSelectedRow();
-        String cedula = (String)jTable1.getValueAt(row, 5);
+        int row = jTableDelitos.getSelectedRow();
+        int codigo = (Integer)jTableDelitos.getValueAt(row, 0);
         try {
-            Ciudadano persona = controller.darCiudadanoPorCedula(cedula);
+            Delito delito = controller.darDelitoPorCodigo(codigo);
+            ventanaObjetivo.cambiarTxtDelito(codigo);
+            this.dispose();
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());
         }
-    }//GEN-LAST:event_jTable3MouseClicked
+    }//GEN-LAST:event_jTableDelitosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTableDelitos;
     // End of variables declaration//GEN-END:variables
+
+    private void llenarGrilla()
+    {
+         try {
+            DefaultTableModel model = (DefaultTableModel) jTableDelitos.getModel();
+            model.getDataVector().removeAllElements();
+            if(!controller.darDelitos().isEmpty())
+            {
+                for (Delito delito : controller.darDelitos()) {
+                    model.addRow(new Object[]{delito.getCodigo(),delito.getNombre(), delito.getPenaMinima(), delito.getPenaMaxima()});
+                }    
+            }
+            
+        } catch (RemoteException ex) {
+             System.out.println(ex.getMessage());
+        }
+    }
 }
