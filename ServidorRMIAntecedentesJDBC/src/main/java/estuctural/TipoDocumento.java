@@ -50,6 +50,13 @@ public class TipoDocumento implements Serializable, CRUD{
     }
 
     @Override
+    public String toString() {
+        return "TipoDocumento{" + "codigo=" + codigo + ", siglas=" + siglas + ", descripcion=" + descripcion + '}';
+    }
+    
+    
+
+    @Override
     public String crear() {
         return "INSERT INTO public.tipo_documentos(\n" +
 "	codigo, siglas, descripcion)\n" +

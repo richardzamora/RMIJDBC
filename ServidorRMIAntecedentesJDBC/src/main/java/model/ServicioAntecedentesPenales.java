@@ -25,7 +25,7 @@ public class ServicioAntecedentesPenales extends UnicastRemoteObject implements 
     ServicioDelito servicioDelito;
     ServicioTipoDocumento servicioTipoDocumento;
     
-    public ServicioAntecedentesPenales() {
+    public ServicioAntecedentesPenales() throws RemoteException{
         servicioAntecedente = new ServicioAntecedente();
         servicioCiudadano = new ServicioCiudadano();
         servicioDelito = new ServicioDelito();

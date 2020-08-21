@@ -5,7 +5,10 @@
  */
 package main;
 
+import estuctural.Antecedente;
+import estuctural.Ciudadano;
 import estuctural.Delito;
+import estuctural.TipoDocumento;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.sql.PreparedStatement;
@@ -26,8 +29,8 @@ public class AplicacionServidorRMI {
     {
         try {
             
-        ArrayList<Delito> delitos = model.darDelitos();
-        for(Delito crimen : delitos)
+        ArrayList<Ciudadano> delitos = model.darCiudadanos();
+        for(Ciudadano crimen : delitos)
             {
                 System.out.println(crimen.toString());
             }
@@ -45,10 +48,6 @@ public class AplicacionServidorRMI {
             Naming.rebind("//192.168.16.13/ServidorAntecedentes", model);
             System.out.println("Servidor Antecedentes operando");
             Conexion.getInstance();
-            AplicacionServidorRMI cosa = new AplicacionServidorRMI();
-            
-            //--------------------------------------------------------------
-            cosa.pruebaBaseDatos(model);
             //--------------------------------------------------------------
         }catch(Exception e){
             System.out.println("Error! : " +e);
