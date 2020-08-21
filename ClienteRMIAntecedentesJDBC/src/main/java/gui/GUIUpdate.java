@@ -11,6 +11,7 @@ import logica.estuctural.Ciudadano.TipoDocumento;
 import logica.estuctural.Ciudadano;
 import logica.Observer;
 import model.IServicioAntecedentes;
+import model.IServiciosAntecedentesPenales;
 
 /**
  *
@@ -18,13 +19,13 @@ import model.IServicioAntecedentes;
  */
 public class GUIUpdate extends javax.swing.JFrame implements Cambiable{
 
-    private IServicioAntecedentes controller;
+    private IServiciosAntecedentesPenales controller;
     private Observer observer;
     
     /**
      * Creates new form GUIUpdate
      */
-    public GUIUpdate(IServicioAntecedentes controller) {
+    public GUIUpdate(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller = controller;
         observer = Observer.getInstance();

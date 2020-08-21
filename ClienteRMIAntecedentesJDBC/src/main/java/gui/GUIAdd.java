@@ -7,11 +7,9 @@ package gui;
 
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
-import logica.estuctural.Ciudadano.TipoDocumento;
 import logica.Observer;
-import model.IServicioAntecedentes;
+import model.IServiciosAntecedentesPenales;
 
 /**
  *
@@ -22,10 +20,10 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
     /**
      * Creates new form GUIAdd
      */
-    private IServicioAntecedentes controller;
+    private IServiciosAntecedentesPenales controller;
     private Observer observer;
     
-    public GUIAdd(IServicioAntecedentes controller) {
+    public GUIAdd(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller =  controller;
         observer = Observer.getInstance();
@@ -222,7 +220,7 @@ public class GUIAdd extends javax.swing.JFrame implements Cambiable{
                 String direccion = jTextField4.getText().trim();
                 Date fecha = jDateChooser1.getDate();
                 String cedula = jTextField5.getText().trim();
-                TipoDocumento tipoDocumento = (TipoDocumento)jComboBox1.getSelectedItem();
+                int tipoDocumento = (int)jComboBox1.getSelectedItem();
             if(nombre.isEmpty() || apellido.isEmpty() || direccion.isEmpty() || cedula.isEmpty() || fecha==null) {
                 JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intente de nuevo");
             }

@@ -7,9 +7,7 @@ package aplicacionclientermihola;
 
 import gui.GUIMenu;
 import java.rmi.Naming;
-import model.IServicioHola;
-import view.GUIHola;
-import model.IServicioAntecedentes;
+import model.IServiciosAntecedentesPenales;
 
 /**
  *
@@ -22,7 +20,7 @@ public class AplicacionClienteRMIHola {
      */
     public static void main(String[] args) {
         try{
-            IServicioAntecedentes model = (IServicioAntecedentes)Naming.lookup("//192.168.16.9/ServidorAntecedentes");
+            IServiciosAntecedentesPenales model = (IServiciosAntecedentesPenales)Naming.lookup("//192.168.16.9/ServidorAntecedentes");
             GUIMenu gui = new GUIMenu(model);
             gui.setVisible(true);
         }catch(Exception e){

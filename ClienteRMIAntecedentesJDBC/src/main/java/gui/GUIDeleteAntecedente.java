@@ -14,6 +14,7 @@ import logica.estuctural.Ciudadano.TipoDocumento;
 import logica.estuctural.Ciudadano;
 import logica.Observer;
 import model.IServicioAntecedentes;
+import model.IServiciosAntecedentesPenales;
 
 /**
  *
@@ -24,10 +25,10 @@ public class GUIDeleteAntecedente extends javax.swing.JFrame implements Cambiabl
     /**
      * Creates new form GUIDeleteAntecedente
      */
-    private IServicioAntecedentes controller;
+    private IServiciosAntecedentesPenales controller;
     private Observer observer;
     
-    public GUIDeleteAntecedente(IServicioAntecedentes controller) {
+    public GUIDeleteAntecedente(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller=controller;
         observer = Observer.getInstance();

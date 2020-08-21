@@ -7,17 +7,14 @@ package gui;
 
 
 import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import logica.Observer;
-import logica.estuctural.Ciudadano;
-import model.IServicioAntecedentes;
+import estuctural.Ciudadano;
+import model.IServiciosAntecedentesPenales;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -31,11 +28,11 @@ public class GUIMenu extends javax.swing.JFrame {
     /**
      * Creates new form GUIPrincipal
      */
-    private IServicioAntecedentes controller;
+    private IServiciosAntecedentesPenales controller;
     private Observer observer;
     
 
-    public GUIMenu(IServicioAntecedentes controller) {
+    public GUIMenu(IServiciosAntecedentesPenales controller) {
         this.controller = controller;
         observer = Observer.getInstance();
         initComponents();
@@ -330,33 +327,33 @@ public class GUIMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            DefaultPieDataset dataSet = new DefaultPieDataset();
-            for(Ciudadano.TipoDocumento tipoDocumento : Ciudadano.TipoDocumento.values())
-            {
-                double count = 0;
-                for(Ciudadano ciudadano : controller.darCiudadanos())
-                {
-                    if(ciudadano.getTipoDocumento()==tipoDocumento)
-                        count++;
-                }
-                dataSet.setValue(tipoDocumento.name(), count);
-            }
-            
-            JFreeChart chart = ChartFactory.createPieChart("Frecuencia de documentos", dataSet, true, true, false);
-            ChartPanel panel = new ChartPanel(chart);
-            Border bordejpanel = new TitledBorder(new EtchedBorder(), "Gráfica");
-            panel.setBorder(bordejpanel);
-            JFrame ventana = new JFrame("");
-            ventana.setSize(800, 600);
-            ventana.setLocationRelativeTo(null);
-            ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            ventana.setVisible(true);
-            ventana.add(panel);
-        } catch (RemoteException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
+//        try {
+//            // TODO add your handling code here:
+//            DefaultPieDataset dataSet = new DefaultPieDataset();
+//            for(Ciudadano.TipoDocumento tipoDocumento : Ciudadano.TipoDocumento.values())
+//            {
+//                double count = 0;
+//                for(Ciudadano ciudadano : controller.darCiudadanos())
+//                {
+//                    if(ciudadano.getTipoDocumento()==tipoDocumento)
+//                        count++;
+//                }
+//                dataSet.setValue(tipoDocumento.name(), count);
+//            }
+//            
+//            JFreeChart chart = ChartFactory.createPieChart("Frecuencia de documentos", dataSet, true, true, false);
+//            ChartPanel panel = new ChartPanel(chart);
+//            Border bordejpanel = new TitledBorder(new EtchedBorder(), "Gráfica");
+//            panel.setBorder(bordejpanel);
+//            JFrame ventana = new JFrame("");
+//            ventana.setSize(800, 600);
+//            ventana.setLocationRelativeTo(null);
+//            ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+//            ventana.setVisible(true);
+//            ventana.add(panel);
+//        } catch (RemoteException ex) {
+//            JOptionPane.showMessageDialog(this, ex.getMessage());
+//        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
