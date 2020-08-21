@@ -78,13 +78,13 @@ public class ServicioAntecedentesPenales extends UnicastRemoteObject implements 
     }
 
     @Override
-    public boolean actualizarAntecedente(String ciudadanoDi, int delitoCodigo, String ciudad, Date fechaDelito, int sentencia, String estado) throws RemoteException {
-        return servicioAntecedente.actualizarAntecedente(ciudadanoDi, delitoCodigo, ciudad, fechaDelito, sentencia, estado);
+    public boolean actualizarAntecedente(int id, String ciudadanoDi, int delitoCodigo, String ciudad, Date fechaDelito, int sentencia, String estado) throws RemoteException {
+        return servicioAntecedente.actualizarAntecedente(id, ciudadanoDi, delitoCodigo, ciudad, fechaDelito, sentencia, estado);
     }
 
     @Override
-    public boolean eliminarAntecedente(String ciudadanoDi, int delitoCodigo) throws RemoteException {
-        return servicioAntecedente.eliminarAntecedente(ciudadanoDi, delitoCodigo);
+    public boolean eliminarAntecedente(int id) throws RemoteException {
+        return servicioAntecedente.eliminarAntecedente(id);
     }
 
     @Override
@@ -95,6 +95,11 @@ public class ServicioAntecedentesPenales extends UnicastRemoteObject implements 
     @Override
     public ArrayList<TipoDocumento> darTipoDocumentos() throws RemoteException {
         return servicioTipoDocumento.darTipoDocumentos();
+    }
+
+    @Override
+    public Antecedente darAntecedentePorId(int id) throws RemoteException {
+        return servicioAntecedente.darAntecedentePorId(id);
     }
 
 }

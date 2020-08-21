@@ -5,7 +5,6 @@
  */
 package model;
 
-import estuctural.Delito;
 import estuctural.TipoDocumento;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,9 +17,37 @@ import persistencia.Conexion;
  */
 public class ServicioTipoDocumento {
     
-     public TipoDocumento darTipoDocumentoPorCodigo(int codigo)
+     public TipoDocumento darTipoDocumentoPorCodigo(int pCodigo)
      {
-         
+         Conexion conn = null;
+        ResultSet rs = null;
+        TipoDocumento tipoDocumento = new TipoDocumento();
+        tipoDocumento.setCodigo(pCodigo);
+        boolean encontrado = false;
+        
+        try {
+            conn = Conexion.getInstance();
+            rs = conn.executeQuery(tipoDocumento.leerTodos());
+            while(rs.next()){
+                int codigo = rs.getInt("codigo");
+                String siglas = rs.getString("siglas");
+                String descripcion = rs.getString("descripcion");
+                
+                tipoDocumento = new TipoDocumento(codigo, siglas, descripcion);
+                encontrado = true;
+                
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        finally{
+            Conexion.close(rs);
+        }
+        if(encontrado)
+            return tipoDocumento;
+        else
+            return null;
      }
     
     public ArrayList<TipoDocumento> darTipoDocumentos()
