@@ -54,15 +54,19 @@ public class GUIMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
 
@@ -165,34 +169,18 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenu5.setForeground(new java.awt.Color(238, 238, 238));
         jMenu5.setText("Archivos");
 
-        jMenuItem8.setText("Mostrar ciudadanos");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setText("Exit");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem8);
-
-        jMenuItem10.setText("Mostrar antecedente");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem10);
-
-        jMenuItem1.setText("Grafica");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem1);
+        jMenu5.add(jMenuItem2);
 
         jMenuBar1.add(jMenu5);
 
         jMenu3.setForeground(new java.awt.Color(238, 238, 238));
-        jMenu3.setText("Menu");
+        jMenu3.setText("Menu_Ciudadanos");
 
         jMenuItem3.setText("Añadir ciudadano");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -218,24 +206,63 @@ public class GUIMenu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem5);
 
+        jMenuItem12.setText("Buscar ciudadano");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem12);
+
+        jMenuItem8.setText("Mostrar ciudadanos");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem8);
+
+        jMenuItem1.setText("Grafica");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu2.setForeground(new java.awt.Color(238, 238, 238));
+        jMenu2.setText("Menu_Antecedentes");
+
         jMenuItem6.setText("Añadir antecedente");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        jMenu2.add(jMenuItem6);
 
         jMenuItem7.setText("Eliminar antecedente");
-        jMenuItem7.setEnabled(false);
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        jMenu2.add(jMenuItem7);
 
-        jMenuBar1.add(jMenu3);
+        jMenuItem11.setText("Actualizar antecedente");
+        jMenu2.add(jMenuItem11);
+
+        jMenuItem10.setText("Mostrar antecedente");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
+
+        jMenuBar1.add(jMenu2);
 
         jMenu4.setForeground(new java.awt.Color(238, 238, 238));
         jMenu4.setText("Ayuda");
@@ -346,6 +373,17 @@ public class GUIMenu extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        GUIBuscarCiudadano gui = new GUIBuscarCiudadano(controller);
+        gui.show();
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,12 +425,16 @@ public class GUIMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
