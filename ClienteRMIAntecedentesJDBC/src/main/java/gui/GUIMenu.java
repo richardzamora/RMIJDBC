@@ -253,6 +253,11 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenu2.add(jMenuItem7);
 
         jMenuItem11.setText("Actualizar antecedente");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem11);
 
         jMenuItem13.setText("Buscar antecedente");
@@ -348,33 +353,39 @@ public class GUIMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-//        try {
-//            // TODO add your handling code here:
-//            DefaultPieDataset dataSet = new DefaultPieDataset();
-//            for(Ciudadano.TipoDocumento tipoDocumento : Ciudadano.TipoDocumento.values())
-//            {
-//                double count = 0;
-//                for(Ciudadano ciudadano : controller.darCiudadanos())
-//                {
-//                    if(ciudadano.getTipoDocumento()==tipoDocumento)
-//                        count++;
-//                }
-//                dataSet.setValue(tipoDocumento.name(), count);
-//            }
-//            
-//            JFreeChart chart = ChartFactory.createPieChart("Frecuencia de documentos", dataSet, true, true, false);
-//            ChartPanel panel = new ChartPanel(chart);
-//            Border bordejpanel = new TitledBorder(new EtchedBorder(), "Gráfica");
-//            panel.setBorder(bordejpanel);
-//            JFrame ventana = new JFrame("");
-//            ventana.setSize(800, 600);
-//            ventana.setLocationRelativeTo(null);
-//            ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-//            ventana.setVisible(true);
-//            ventana.add(panel);
-//        } catch (RemoteException ex) {
-//            JOptionPane.showMessageDialog(this, ex.getMessage());
-//        }
+        try {
+            // TODO add your handling code here:
+            DefaultPieDataset dataSet = new DefaultPieDataset();
+            
+            int cedula=0;
+            int tarjetaDeIdentidad=0;
+            int cedulaDeExtranjeria=0;
+                for(Ciudadano ciudadano : controller.darCiudadanos())
+                {
+                    if(ciudadano.getTipoDocumento()==1)
+                         cedula++;
+                    else if(ciudadano.getTipoDocumento()==2)
+                        tarjetaDeIdentidad++;
+                    else if(ciudadano.getTipoDocumento()==3)
+                        cedulaDeExtranjeria++;
+                }
+                dataSet.setValue("cedula", cedula);
+                dataSet.setValue("tarjetaDeIdentidad", tarjetaDeIdentidad);
+                dataSet.setValue("cedulaDeExtranjeria", cedulaDeExtranjeria);
+            
+            JFreeChart chart = ChartFactory.createPieChart("Frecuencia de documentos", dataSet, true, true, false);
+            ChartPanel panel = new ChartPanel(chart);
+            Border bordejpanel = new TitledBorder(new EtchedBorder(), "Gráfica");
+            panel.setBorder(bordejpanel);
+            JFrame ventana = new JFrame("");
+            ventana.setSize(800, 600);
+            ventana.setLocationRelativeTo(null);
+            ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            ventana.setVisible(true);
+            ventana.add(panel);
+        } catch (RemoteException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -387,6 +398,12 @@ public class GUIMenu extends javax.swing.JFrame {
         GUIBuscarCiudadano gui = new GUIBuscarCiudadano(controller);
         gui.show();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        GUIActualizarAntecedente gui = new GUIActualizarAntecedente(controller);
+        gui.show();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments

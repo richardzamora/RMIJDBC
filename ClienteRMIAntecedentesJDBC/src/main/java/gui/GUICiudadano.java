@@ -169,12 +169,13 @@ public class GUICiudadano extends javax.swing.JFrame implements Cambiable {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
-        String cedula = (String)jTable1.getValueAt(row, 5);
+        String cedula = (String)jTable1.getValueAt(row, 4);
         try {
             Ciudadano persona = controller.darCiudadanoPorCedula(cedula);
             if(ventanaObjetivo!=null)
             {
                 ventanaObjetivo.cambiarTxtCiudadano(cedula);
+                this.hide();
             }
         } catch (RemoteException ex) {
             System.out.println(ex.getMessage());

@@ -26,6 +26,8 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
     public GUIUpdateCiudadano(IServiciosAntecedentesPenales controller) {
         initComponents();
         this.controller = controller;
+        buttonGroup1.add(jRadioButtonH);
+        buttonGroup1.add(jRadioButtonM);
     }
 
     /**
@@ -37,6 +39,7 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -49,9 +52,10 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
         jTextField3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jRadioButtonH = new javax.swing.JRadioButton();
+        jRadioButtonM = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -99,9 +103,11 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
 
         jLabel3.setText("Genero");
 
-        jTextField4.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(229, 229, 229)));
-
         jLabel4.setText("Fecha de nacimiento");
+
+        jRadioButtonH.setText("Hombre");
+
+        jRadioButtonM.setText("Mujer");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,10 +122,15 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
                     .addComponent(jLabel4))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jRadioButtonH, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRadioButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -134,9 +145,11 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButtonH)
+                        .addComponent(jRadioButtonM)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -158,7 +171,7 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
 
         jLabel8.setIcon(new javax.swing.ImageIcon("imagenes\\actualizar240.png"));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de ciudadania", "Tarjeta de identidad", "Cedula de extranjeria" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -180,7 +193,7 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
                                     .addComponent(jLabel5))
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                    .addComponent(jTextField5)
                                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -189,7 +202,7 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(231, 231, 231)
                         .addComponent(jLabel7)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,10 +252,13 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
         try {
             if(!cedula.isEmpty()){
                 Ciudadano ciudadano = controller.darCiudadanoPorCedula(cedula);
-                
+                jComboBox1.setSelectedIndex(ciudadano.getTipoDocumento()-1);
                 jTextField1.setText(ciudadano.getNombre());
                 jTextField3.setText(ciudadano.getApellido());
-                jTextField4.setText("true");
+                if(ciudadano.isHombre())
+                    jRadioButtonH.setSelected(true);
+                else
+                    jRadioButtonM.setSelected(true);
                 jDateChooser1.setDate(ciudadano.getFechaNacimiento());
                 jButton1.setEnabled(true);
                 
@@ -263,12 +279,12 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
             String apellido = jTextField3.getText().trim();
             Date fecha = (Date)jDateChooser1.getDate();
             String cedula = jTextField5.getText().trim();
-            int tipoDocumento = Integer.parseInt((String)jComboBox1.getSelectedItem());
+            int tipoDocumento = jComboBox1.getSelectedIndex()+1;
                 if(nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Existen valores vacíos, por favor intente de nuevo");
                 }
                 else{
-                  controller.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, (Date)fecha, false);
+                  controller.actualizarCiudadano(cedula, tipoDocumento, nombre, apellido, (Date)fecha, jRadioButtonH.isSelected());
                     JOptionPane.showMessageDialog(this, "El ciudadano fue actualizado correctamente");
                     jButton1.setEnabled(false);
                 }
@@ -280,6 +296,7 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -294,9 +311,10 @@ public class GUIUpdateCiudadano extends javax.swing.JFrame implements Cambiable{
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButtonH;
+    private javax.swing.JRadioButton jRadioButtonM;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
